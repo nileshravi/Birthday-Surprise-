@@ -1,0 +1,352 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #080814;
+  color: white;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.birthday-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 170, 210, 0.16), transparent 30%),
+    radial-gradient(circle at 20% 80%, rgba(160, 120, 255, 0.12), transparent 30%),
+    #080814;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.8;
+  background-image:
+    radial-gradient(circle, white 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,.6) 1px, transparent 1px);
+  background-size: 70px 70px, 110px 110px;
+  background-position: 10px 20px, 40px 70px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+.welcome-screen,
+.birthday-screen,
+.message-screen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 18px;
+}
+
+.birthday-screen,
+.message-screen {
+  display: none;
+}
+
+.welcome-card {
+  width: min(92%, 520px);
+  padding: 45px 28px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 28px;
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 25px 80px rgba(0,0,0,.45);
+  animation: appear 1.2s ease;
+}
+
+.gift {
+  font-size: 70px;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.welcome-card h1 {
+  margin: 20px 0 12px;
+  font-size: clamp(34px, 8vw, 58px);
+  line-height: 1.05;
+}
+
+.welcome-card p {
+  color: rgba(255,255,255,.75);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  padding: 15px 28px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff78b7, #9b7cff);
+  box-shadow: 0 10px 35px rgba(255,120,183,.3);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 15px 45px rgba(255,120,183,.45);
+}
+
+.small-text {
+  display: block;
+  margin-top: 15px;
+  font-size: 12px;
+  opacity: .55;
+}
+
+.birthday-content {
+  position: relative;
+  z-index: 2;
+  width: min(95%, 700px);
+  text-align: center;
+  animation: appear 1.2s ease;
+}
+
+.little-title {
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+.birthday-content h1 {
+  margin: 15px 0 0;
+  font-size: clamp(55px, 13vw, 110px);
+  line-height: .9;
+  letter-spacing: 5px;
+  text-shadow: 0 0 35px rgba(255,150,210,.35);
+}
+
+.birthday-content h1 span {
+  font-size: .55em;
+  letter-spacing: 8px;
+}
+
+.birthday-content h2 {
+  margin: 25px 0;
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: normal;
+  color: #ffc4df;
+}
+
+.cake {
+  font-size: 80px;
+  animation: float 2s ease-in-out infinite;
+}
+
+.wish {
+  width: min(90%, 520px);
+  margin: 25px auto;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255,255,255,.78);
+}
+
+.balloons span {
+  position: absolute;
+  font-size: 55px;
+  animation: balloonFloat 5s ease-in-out infinite;
+}
+
+.balloons span:nth-child(1) {
+  left: 8%;
+  top: 15%;
+}
+
+.balloons span:nth-child(2) {
+  right: 8%;
+  top: 20%;
+  animation-delay: 1s;
+}
+
+.balloons span:nth-child(3) {
+  left: 15%;
+  bottom: 12%;
+  animation-delay: 2s;
+}
+
+.balloons span:nth-child(4) {
+  right: 15%;
+  bottom: 15%;
+  animation-delay: 1.5s;
+}
+
+.balloons span:nth-child(5) {
+  left: 47%;
+  top: 8%;
+  animation-delay: .5s;
+}
+
+.message-card {
+  width: min(92%, 650px);
+  text-align: center;
+  padding: 40px 28px;
+  border-radius: 30px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 25px 80px rgba(0,0,0,.4);
+  animation: appear 1s ease;
+}
+
+.heart {
+  font-size: 70px;
+  color: #ff9dcb;
+  animation: heartbeat 1.5s infinite;
+}
+
+.message-card h2 {
+  font-size: clamp(28px, 6vw, 45px);
+  margin: 15px 0 25px;
+}
+
+.message-card p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(255,255,255,.8);
+}
+
+.photo-placeholder {
+  width: min(100%, 360px);
+  height: 220px;
+  margin: 30px auto;
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255,255,255,.08);
+  border: 1px dashed rgba(255,255,255,.25);
+  font-size: 55px;
+}
+
+.photo-placeholder span {
+  font-size: 14px;
+  opacity: .6;
+}
+
+.final-line {
+  color: #ffc4df !important;
+  font-style: italic;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes balloonFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(3deg);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.15);
+  }
+  30% {
+    transform: scale(1);
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: .35;
+  }
+  to {
+    opacity: .9;
+  }
+}
+
+@media (min-width: 700px) {
+  .welcome-card {
+    padding: 65px 50px;
+  }
+}
+.memories-section {
+  margin: 30px 0 10px;
+}
+
+.memories-title {
+  color: #ffc4df !important;
+  font-size: 22px !important;
+  margin-bottom: 20px !important;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.memory-photo {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.memory-photo:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.memory-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.memory-note {
+  font-size: 15px !important;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+@media (min-width: 700px) {
+  .photo-gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  }
