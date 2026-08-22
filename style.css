@@ -542,3 +542,50 @@ button:hover {
     opacity: 1;
   }
 }
+/* AUTO-ANIMATED MEMORIES */
+
+.memory-photo {
+  animation: memoryFloat 4s ease-in-out infinite;
+}
+
+.memory-photo:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.memory-photo:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.memory-photo:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.memory-photo:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+.memory-photo:nth-child(5) {
+  animation-delay: 1.2s;
+}
+
+.memory-photo:nth-child(6) {
+  animation-delay: 1.5s;
+}
+
+.memory-photo:nth-child(7) {
+  animation-delay: 1.8s;
+}
+
+.memory-photo:nth-child(8) {
+  animation-delay: 2.1s;
+}
+
+@keyframes memoryFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.03);
+  }
+}
