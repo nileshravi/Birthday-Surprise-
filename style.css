@@ -350,3 +350,125 @@ button:hover {
     grid-template-columns: repeat(4, 1fr);
   }
   }
+/* YES / NO START SCREEN */
+
+.choice-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background:
+    radial-gradient(circle at top, rgba(255, 100, 180, 0.25), transparent 35%),
+    radial-gradient(circle at bottom, rgba(130, 80, 255, 0.25), transparent 35%),
+    #080814;
+
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.choice-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.choice-card {
+  width: min(500px, 100%);
+  text-align: center;
+
+  padding: 45px 25px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+
+  box-shadow: 0 0 50px rgba(255, 80, 170, 0.15);
+
+  animation: choicePop 1s ease;
+}
+
+.choice-emoji {
+  font-size: 65px;
+  margin-bottom: 15px;
+  animation: emojiFloat 2s ease-in-out infinite;
+}
+
+.choice-card h1 {
+  font-size: clamp(28px, 7vw, 45px);
+  margin: 10px 0;
+}
+
+.choice-card p {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.choice-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.choice-buttons button {
+  border: none;
+  border-radius: 50px;
+
+  padding: 15px 30px;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+#yesBtn {
+  background: linear-gradient(135deg, #ff5fa2, #9b6cff);
+  color: white;
+
+  box-shadow: 0 10px 30px rgba(255, 80, 170, 0.35);
+}
+
+#yesBtn:hover {
+  transform: scale(1.12);
+}
+
+#noBtn {
+  background: white;
+  color: #222;
+}
+
+#noBtn:hover {
+  transform: scale(0.95);
+}
+
+@keyframes choicePop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes emojiFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
