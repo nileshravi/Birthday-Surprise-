@@ -58,9 +58,46 @@ function launchConfetti() {
         easing: "cubic-bezier(.25,.46,.45,.94)"
       }
     );
+    
 
     setTimeout(() => {
       confetti.remove();
     }, duration);
   }
       }
+function sayYes() {
+  const emoji = document.getElementById("choiceEmoji");
+  const title = document.getElementById("choiceTitle");
+  const text = document.getElementById("choiceText");
+  const buttons = document.querySelector(".choice-buttons");
+
+  emoji.innerHTML = "🤩🎉🥳";
+  title.innerHTML = "YAYYYYY!!! 😍✨";
+  text.innerHTML = "I knew you would say YES! 🥹💖<br>Get ready for something special... 🎁";
+
+  buttons.style.display = "none";
+
+  setTimeout(() => {
+    document.getElementById("choiceScreen").classList.add("hide");
+  }, 2500);
+}
+
+
+function sayNo() {
+  const emoji = document.getElementById("choiceEmoji");
+  const title = document.getElementById("choiceTitle");
+  const text = document.getElementById("choiceText");
+  const noBtn = document.getElementById("noBtn");
+
+  emoji.innerHTML = "😤";
+  title.innerHTML = "EXCUSE ME?! 😤";
+  text.innerHTML = "Dobara socho! Itni mehnat se surprise banaya hai aur tum NO bol rahe ho?! 😒💢";
+
+  noBtn.innerHTML = "NO... Sorry 😭";
+
+  setTimeout(() => {
+    emoji.innerHTML = "😠";
+    title.innerHTML = "Ab YES dabao! 😤👉";
+    text.innerHTML = "Warna surprise dekhne nahi milega! 😒🎁";
+  }, 1800);
+}
