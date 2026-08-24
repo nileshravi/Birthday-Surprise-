@@ -262,19 +262,29 @@ const cakeMessage = document.getElementById("cakeMessage");
 if (cutCakeBtn) {
   cutCakeBtn.addEventListener("click", () => {
 
-    // Cake cutting
-    cakeSurprise.classList.add("cut");
-
+    // Button hide
     cutCakeBtn.style.display = "none";
 
-    cakeMessage.innerHTML =
-      "YAYYY! 🎂✨ Make a beautiful wish! ❤️";
+    // Step 1: Knife enters
+    cakeSurprise.classList.add("cutting");
 
-    // Balloons
-    createBirthdayBalloons();
+    cakeMessage.innerHTML = "Cutting the cake... 🔪🎂";
 
-    // Confetti
-    createCakeConfetti();
+    // Step 2: Knife cake par pahunchne ke baad cut
+    setTimeout(() => {
+      cakeSurprise.classList.remove("cutting");
+      cakeSurprise.classList.add("cut");
+
+      cakeMessage.innerHTML =
+        "YAYYYYY!!! Happy Birthday! 🥳🎂✨";
+    }, 900);
+
+    // Step 3: Cake split ke baad balloons
+    setTimeout(() => {
+      createBirthdayBalloons();
+      createCakeConfetti();
+    }, 1700);
+
   });
 }
 
