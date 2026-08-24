@@ -1063,3 +1063,128 @@ button:hover {
     opacity: 0;
   }
 }
+/* 🎂 REAL COMPLETE CAKE */
+
+.real-cake {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 220px;
+  height: 135px;
+  transform: translateX(-50%);
+}
+
+/* दोनों halves */
+.cake-half {
+  position: absolute;
+  bottom: 0;
+  width: 110px;
+  height: 100px;
+  transition: transform 1.1s cubic-bezier(.2,.8,.3,1);
+}
+
+/* शुरू में दोनों बिल्कुल जुड़े हुए */
+.cake-half-left {
+  left: 0;
+}
+
+.cake-half-right {
+  right: 0;
+}
+
+/* Cake layers */
+
+.cake-layer {
+  position: absolute;
+  left: 0;
+  width: 110px;
+}
+
+.frosting {
+  top: 0;
+  height: 28px;
+  background: #ff9fc7;
+  border-radius: 18px 18px 5px 5px;
+}
+
+.cream {
+  top: 25px;
+  height: 18px;
+  background: #fff4f8;
+}
+
+.sponge {
+  top: 43px;
+  height: 52px;
+  background: #f5a05a;
+  border-radius: 0 0 8px 8px;
+}
+
+.cake-plate {
+  position: absolute;
+  bottom: -8px;
+  left: -5px;
+  width: 120px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* 🕯️ Candle */
+
+.real-cake .cake-candle {
+  position: absolute;
+  z-index: 10;
+  top: -38px;
+  left: 50%;
+  width: 12px;
+  height: 45px;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: repeating-linear-gradient(
+    45deg,
+    #fff,
+    #fff 4px,
+    #ff8fc1 4px,
+    #ff8fc1 8px
+  );
+}
+
+/* 🔥 Flame */
+
+.real-cake .flame {
+  position: absolute;
+  top: -27px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 25px;
+  animation: flameDance 0.7s ease-in-out infinite alternate;
+}
+
+/* 🔪 CLICK KE BAAD ACTUAL SPLIT */
+
+.cake-surprise.cut .cake-half-left {
+  transform: translateX(-55px) rotate(-7deg);
+}
+
+.cake-surprise.cut .cake-half-right {
+  transform: translateX(55px) rotate(7deg);
+}
+
+/* Candle नीचे/side में react करेगी */
+
+.cake-surprise.cut .real-cake .cake-candle {
+  animation: candleFall 0.8s ease forwards;
+}
+
+.cake-surprise.cut .real-cake .flame {
+  animation: flameOut 0.5s ease forwards;
+}
+
+@keyframes candleFall {
+  to {
+    transform: translateX(-50%) translateY(18px) rotate(15deg);
+    opacity: 0.6;
+  }
+}
