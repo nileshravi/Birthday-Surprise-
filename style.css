@@ -1188,3 +1188,50 @@ button:hover {
     opacity: 0.6;
   }
 }
+/* 🎂 CAKE KO EK COMPLETE CAKE JAISE DIKHANE KA FIX */
+
+/* Left half: sirf bahar wala left corner round */
+.cake-half-left .frosting {
+  border-radius: 22px 0 0 6px;
+}
+
+/* Right half: sirf bahar wala right corner round */
+.cake-half-right .frosting {
+  border-radius: 0 22px 6px 0;
+}
+
+/* Sponge bhi ek hi cake jaisa lage */
+.cake-half-left .sponge {
+  border-radius: 0 0 0 14px;
+}
+
+.cake-half-right .sponge {
+  border-radius: 0 0 14px 0;
+}
+
+/* बीच में gap बिल्कुल नहीं */
+.cake-half-left {
+  left: 0;
+}
+
+.cake-half-right {
+  right: 0;
+}
+
+/* दोनों plates हटाकर एक single plate जैसा effect */
+.cake-half-left .cake-plate,
+.cake-half-right .cake-plate {
+  width: 110px;
+  border-radius: 0;
+}
+
+/* Outer plate edges */
+.cake-half-left .cake-plate {
+  left: -5px;
+  border-radius: 50% 0 0 50%;
+}
+
+.cake-half-right .cake-plate {
+  left: 0;
+  border-radius: 0 50% 50% 0;
+}
