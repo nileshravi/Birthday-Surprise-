@@ -253,3 +253,149 @@ function createFloatingHearts() {
     }, duration);
   }
 }
+// 🎂 CAKE CUTTING + BALLOON CELEBRATION
+
+const cutCakeBtn = document.getElementById("cutCakeBtn");
+const cakeSurprise = document.getElementById("cakeSurprise");
+const cakeMessage = document.getElementById("cakeMessage");
+
+if (cutCakeBtn) {
+  cutCakeBtn.addEventListener("click", () => {
+
+    // Cake cutting
+    cakeSurprise.classList.add("cut");
+
+    cutCakeBtn.style.display = "none";
+
+    cakeMessage.innerHTML =
+      "YAYYY! 🎂✨ Make a beautiful wish! ❤️";
+
+    // Balloons
+    createBirthdayBalloons();
+
+    // Confetti
+    createCakeConfetti();
+  });
+}
+
+
+function createBirthdayBalloons() {
+
+  const balloons = ["🎈", "🎈", "🎈", "🎈", "🎈", "🎈"];
+
+  balloons.forEach((balloon, index) => {
+
+    const element = document.createElement("div");
+
+    element.innerHTML = balloon;
+
+    element.style.position = "fixed";
+    element.style.left = (10 + index * 15) + "vw";
+    element.style.bottom = "-80px";
+    element.style.fontSize =
+      (45 + Math.random() * 25) + "px";
+
+    element.style.zIndex = "10001";
+    element.style.pointerEvents = "none";
+
+    document.body.appendChild(element);
+
+    const duration = 3500 + Math.random() * 1500;
+
+    element.animate(
+      [
+        {
+          transform: "translateY(0) scale(0.7)",
+          opacity: 0
+        },
+        {
+          transform: "translateY(-40vh) scale(1)",
+          opacity: 1
+        },
+        {
+          transform:
+            `translateY(-${window.innerHeight + 150}px) scale(1.1) rotate(12deg)`,
+          opacity: 0
+        }
+      ],
+      {
+        duration: duration,
+        easing: "ease-out"
+      }
+    );
+
+    setTimeout(() => {
+      element.remove();
+    }, duration);
+  });
+}
+
+
+function createCakeConfetti() {
+
+  const emojis = [
+    "🎉",
+    "🎊",
+    "✨",
+    "💖",
+    "💕",
+    "🥳",
+    "⭐"
+  ];
+
+  for (let i = 0; i < 70; i++) {
+
+    const piece = document.createElement("span");
+
+    piece.innerHTML =
+      emojis[Math.floor(Math.random() * emojis.length)];
+
+    piece.style.position = "fixed";
+    piece.style.left = "50vw";
+    piece.style.top = "45vh";
+    piece.style.fontSize =
+      (12 + Math.random() * 18) + "px";
+
+    piece.style.zIndex = "10002";
+    piece.style.pointerEvents = "none";
+
+    document.body.appendChild(piece);
+
+    const angle =
+      Math.random() * Math.PI * 2;
+
+    const distance =
+      150 + Math.random() * 350;
+
+    const x =
+      Math.cos(angle) * distance;
+
+    const y =
+      Math.sin(angle) * distance;
+
+    const duration =
+      1200 + Math.random() * 1000;
+
+    piece.animate(
+      [
+        {
+          transform: "translate(0, 0) scale(0)",
+          opacity: 1
+        },
+        {
+          transform:
+            `translate(${x}px, ${y}px) scale(1.2)`,
+          opacity: 0
+        }
+      ],
+      {
+        duration: duration,
+        easing: "cubic-bezier(.2,.8,.3,1)"
+      }
+    );
+
+    setTimeout(() => {
+      piece.remove();
+    }, duration);
+  }
+}
