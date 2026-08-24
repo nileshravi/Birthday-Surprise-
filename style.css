@@ -744,4 +744,109 @@ button:hover {
   50% {
     transform: scale(1.15);
   }
-                                     }
+ /* FINAL GRAND CELEBRATION */
+
+.final-celebration {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  margin: 70px 0 30px;
+  padding: 55px 22px 45px;
+
+  border-radius: 30px;
+
+  background:
+    radial-gradient(circle at top, rgba(255, 100, 180, 0.25), transparent 40%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03));
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.25),
+    0 0 45px rgba(255, 100, 180, 0.12);
+}
+
+.final-emoji {
+  font-size: 65px;
+  margin-bottom: 15px;
+  animation: cakeBounce 2s ease-in-out infinite;
+}
+
+.final-small {
+  margin: 0 0 8px !important;
+  font-size: 12px !important;
+  letter-spacing: 4px;
+  color: #ffc4df !important;
+  font-weight: bold;
+}
+
+.final-celebration h2 {
+  margin: 0 0 20px !important;
+  font-size: clamp(42px, 12vw, 75px) !important;
+  line-height: 0.9;
+  letter-spacing: -2px;
+}
+
+.final-celebration h2 span {
+  display: inline-block;
+  margin-top: 8px;
+  color: #ffc4df;
+  text-shadow:
+    0 0 15px rgba(255, 160, 210, 0.4),
+    0 0 35px rgba(255, 100, 180, 0.25);
+  animation: birthdayGlow 2s ease-in-out infinite;
+}
+
+.final-message {
+  max-width: 500px;
+  margin: 25px auto !important;
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.final-hearts {
+  margin: 25px 0;
+  font-size: 26px;
+  word-spacing: 8px;
+  animation: heartsFloat 2.5s ease-in-out infinite;
+}
+
+.final-sign {
+  margin: 20px 0 0 !important;
+  font-size: 13px !important;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+@keyframes cakeBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
+@keyframes birthdayGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes heartsFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}                                    }
