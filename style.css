@@ -850,3 +850,140 @@ button:hover {
     transform: translateY(-8px);
   }
 }                                    }
+/* 🎂 CAKE CUTTING SURPRISE */
+
+.cake-surprise {
+  margin: 35px auto 30px;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+.cake-text {
+  font-size: 18px !important;
+  color: #ffc4df !important;
+  margin-bottom: 20px !important;
+  animation: softPulse 2s ease-in-out infinite;
+}
+
+.birthday-cake {
+  position: relative;
+  width: 180px;
+  height: 145px;
+  margin: 10px auto 25px;
+  cursor: pointer;
+  transition: transform 0.6s ease;
+}
+
+.birthday-cake:hover {
+  transform: scale(1.05);
+}
+
+/* Cake body */
+.cake-top {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 110px;
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.25));
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Candle */
+.cake-candle {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 50%;
+  width: 12px;
+  height: 45px;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  background: linear-gradient(90deg, #ff8fc1, #fff, #ff8fc1);
+}
+
+/* Flame */
+.flame {
+  position: absolute;
+  left: 50%;
+  top: -25px;
+  transform: translateX(-50%);
+  font-size: 25px;
+  animation: flameDance 0.7s ease-in-out infinite alternate;
+}
+
+/* Cut state */
+.cake-surprise.cut .birthday-cake {
+  transform: scale(1.1);
+}
+
+.cake-surprise.cut .cake-top {
+  animation: cakeSplit 1.2s ease forwards;
+}
+
+/* Button */
+.cut-cake-btn {
+  border: none;
+  border-radius: 50px;
+  padding: 14px 28px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #ff5fa2, #9b6cff);
+  box-shadow: 0 10px 25px rgba(255, 80, 170, 0.3);
+  transition: 0.3s ease;
+}
+
+.cut-cake-btn:hover {
+  transform: scale(1.08);
+}
+
+.cake-message {
+  min-height: 25px;
+  margin: 20px 0 0 !important;
+  font-size: 17px !important;
+  color: #ffc4df !important;
+  font-weight: bold;
+}
+
+@keyframes flameDance {
+  from {
+    transform: translateX(-50%) scale(0.9) rotate(-8deg);
+  }
+
+  to {
+    transform: translateX(-50%) scale(1.15) rotate(8deg);
+  }
+}
+
+@keyframes cakeSplit {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  45% {
+    transform: translateX(-50%) scale(1.15);
+  }
+
+  100% {
+    transform: translateX(-50%) scale(0.92) rotate(2deg);
+  }
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
