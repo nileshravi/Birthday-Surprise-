@@ -1291,3 +1291,77 @@ button:hover {
       rotate(15deg);
   }
       }
+/* 📸 ONE-BY-ONE MEMORY REVEAL */
+
+.memory-reveal {
+  width: 100%;
+  max-width: 520px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.memory-slide {
+  display: none;
+  animation: memoryReveal 0.8s ease;
+}
+
+.memory-slide.active {
+  display: block;
+}
+
+.memory-slide .memory-photo {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.memory-slide .memory-photo img {
+  width: 100%;
+  display: block;
+  border-radius: 22px;
+  object-fit: cover;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.memory-words {
+  margin: 20px auto !important;
+  padding: 0 15px;
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  color: rgba(255,255,255,0.9) !important;
+}
+
+.next-memory-btn {
+  border: none;
+  border-radius: 50px;
+  padding: 14px 26px;
+  margin-top: 10px;
+
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+
+  background: linear-gradient(135deg, #ff5fa2, #9b6cff);
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(255,80,170,0.25);
+
+  transition: transform 0.3s ease;
+}
+
+.next-memory-btn:hover {
+  transform: scale(1.08);
+}
+
+@keyframes memoryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
