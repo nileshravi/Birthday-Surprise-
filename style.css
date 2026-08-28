@@ -1365,3 +1365,59 @@ button:hover {
     transform: translateY(0) scale(1);
   }
 }
+/* 📸 FORCE ONE MEMORY AT A TIME */
+
+.memory-reveal {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.memory-reveal .memory-slide {
+  display: none !important;
+  width: 100% !important;
+  opacity: 0;
+}
+
+.memory-reveal .memory-slide.active {
+  display: block !important;
+  opacity: 1;
+  animation: memoryRevealFixed 0.8s ease forwards;
+}
+
+/* Purane gallery animation ko override */
+.memory-reveal .memory-photo {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Photo */
+.memory-reveal .memory-photo img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 380px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+}
+
+/* Words */
+.memory-reveal .memory-words {
+  display: block !important;
+}
+
+/* Next button */
+.memory-reveal .next-memory-btn {
+  display: inline-block !important;
+}
+
+@keyframes memoryRevealFixed {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
