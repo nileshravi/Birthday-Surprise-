@@ -409,3 +409,39 @@ function createCakeConfetti() {
     }, duration);
   }
 }
+// 📸 ONE-BY-ONE MEMORY CONTROLLER
+
+const memorySlides = document.querySelectorAll(".memory-slide");
+const nextMemoryBtn = document.getElementById("nextMemoryBtn");
+
+let currentMemory = 0;
+
+if (nextMemoryBtn && memorySlides.length > 0) {
+
+  nextMemoryBtn.addEventListener("click", () => {
+
+    // Current photo hide
+    memorySlides[currentMemory].classList.remove("active");
+
+    // Next photo
+    currentMemory++;
+
+    // Agar last photo aa gayi
+    if (currentMemory >= memorySlides.length) {
+      currentMemory = memorySlides.length - 1;
+    }
+
+    // Next photo show
+    memorySlides[currentMemory].classList.add("active");
+
+    // Last photo par button ka text change
+    if (currentMemory === memorySlides.length - 1) {
+      nextMemoryBtn.innerHTML = "Next Surprise → 💌";
+    } else {
+      nextMemoryBtn.innerHTML = "Next Memory → ✨";
+    }
+
+  });
+
+}
+
