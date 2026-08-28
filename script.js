@@ -131,7 +131,28 @@ photoViewer.addEventListener("click", (event) => {
 const envelope = document.getElementById("envelope");
 
 envelope.addEventListener("click", () => {
+
+  // Envelope opens
   envelope.classList.add("open");
+
+  // Photos section
+  const memories = document.getElementById("memoryReveal");
+
+  // Thoda delay — letter open hone ke baad photos appear
+  setTimeout(() => {
+    if (memories) {
+      memories.classList.add("show-memories");
+
+      // Photos section tak smoothly scroll
+      setTimeout(() => {
+        memories.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }, 300);
+    }
+  }, 1200);
+
 });
 // FINAL CELEBRATION AUTO CONFETTI
 
