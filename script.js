@@ -496,4 +496,34 @@ if (nextMemoryBtn && memorySlides.length > 0) {
   });
 
 }
+const openBigLetterBtn =
+  document.getElementById("openBigLetterBtn");
 
+if (openBigLetterBtn && bigLetterSection) {
+
+  openBigLetterBtn.addEventListener("click", () => {
+
+    // Envelope opens
+    bigLetterSection.classList.add("opened");
+
+    // Button hide
+    openBigLetterBtn.style.display = "none";
+
+    // Letter par smoothly scroll
+    setTimeout(() => {
+
+      const letter =
+        document.getElementById("personalLetter");
+
+      if (letter) {
+        letter.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+
+    }, 700);
+
+  });
+
+}
