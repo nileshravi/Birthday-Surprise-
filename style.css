@@ -1448,3 +1448,208 @@ button:hover {
     transform: translateY(0);
   }
 }
+/* 💌 BIG PINK LETTER ENVELOPE */
+
+.big-letter-section {
+  display: none;
+  text-align: center;
+  padding: 50px 15px 70px;
+  opacity: 0;
+}
+
+.big-letter-section.show-letter {
+  display: block;
+  animation: bigLetterAppear 1s ease forwards;
+}
+
+.big-letter-intro {
+  margin-bottom: 30px !important;
+  font-size: 18px !important;
+  color: #ffc4df !important;
+  font-style: italic;
+}
+
+/* Envelope container */
+.big-envelope {
+  position: relative;
+  width: 310px;
+  height: 220px;
+  margin: 30px auto 35px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+/* Main pink envelope */
+.big-envelope-body {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  background: linear-gradient(
+    145deg,
+    #ff8fbd,
+    #ff5f9d
+  );
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.25),
+    0 0 35px rgba(255,100,170,0.25);
+}
+
+/* Envelope diagonal folds */
+.big-envelope-body::before,
+.big-envelope-body::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.big-envelope-body::before {
+  left: 0;
+  border-width: 110px 155px 0 0;
+  border-color: rgba(255,255,255,0.18) transparent transparent transparent;
+}
+
+.big-envelope-body::after {
+  right: 0;
+  border-width: 110px 0 0 155px;
+  border-color: rgba(255,255,255,0.18) transparent transparent transparent;
+}
+
+/* 💗 Heart */
+.envelope-heart {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+
+  filter: drop-shadow(0 5px 8px rgba(0,0,0,0.15));
+
+  animation: heartBeat 1.4s ease-in-out infinite;
+}
+
+/* ✉️ Flap */
+.big-envelope-flap {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+
+  width: 0;
+  height: 0;
+
+  border-left: 155px solid transparent;
+  border-right: 155px solid transparent;
+  border-top: 115px solid #ffb1d0;
+
+  transform-origin: top center;
+
+  transition: transform 1s ease;
+}
+
+/* 📜 Paper inside */
+.big-letter-paper {
+  position: absolute;
+  z-index: 2;
+
+  left: 25px;
+  bottom: 10px;
+
+  width: 260px;
+  height: 175px;
+
+  background: #fffafc;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #d94f8d;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+  transition: transform 1s ease;
+}
+
+.big-letter-paper span {
+  font-size: 38px;
+}
+
+.big-letter-paper p {
+  margin: 8px 0 0 !important;
+  font-size: 18px !important;
+  font-weight: bold;
+  color: #d94f8d !important;
+}
+
+/* Button */
+.open-big-letter-btn {
+  border: none;
+  border-radius: 50px;
+
+  padding: 15px 30px;
+
+  font-size: 17px;
+  font-weight: bold;
+
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    #ff5fa2,
+    #9b6cff
+  );
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 25px rgba(255,80,170,0.3);
+
+  transition: transform 0.3s ease;
+}
+
+.open-big-letter-btn:hover {
+  transform: scale(1.08);
+}
+
+/* Envelope opening */
+.big-letter-section.opened .big-envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.big-letter-section.opened .big-letter-paper {
+  transform: translateY(-110px);
+}
+
+/* Animations */
+
+@keyframes bigLetterAppear {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
