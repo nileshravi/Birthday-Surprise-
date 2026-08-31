@@ -435,31 +435,62 @@ function createCakeConfetti() {
 const memorySlides = document.querySelectorAll(".memory-slide");
 const nextMemoryBtn = document.getElementById("nextMemoryBtn");
 
+const memoryReveal = document.getElementById("memoryReveal");
+const bigLetterSection = document.getElementById("bigLetterSection");
+
 let currentMemory = 0;
 
 if (nextMemoryBtn && memorySlides.length > 0) {
 
   nextMemoryBtn.addEventListener("click", () => {
 
-    // Current photo hide
-    memorySlides[currentMemory].classList.remove("active");
+    // अभी last photo नहीं है
+    if (currentMemory < memorySlides.length - 1) {
 
-    // Next photo
-    currentMemory++;
+      // Current photo hide
+      memorySlides[currentMemory].classList.remove("active");
 
-    // Agar last photo aa gayi
-    if (currentMemory >= memorySlides.length) {
-      currentMemory = memorySlides.length - 1;
-    }
+      // Next photo
+      currentMemory++;
 
-    // Next photo show
-    memorySlides[currentMemory].classList.add("active");
+      // Next photo show
+      memorySlides[currentMemory].classList.add("active");
 
-    // Last photo par button ka text change
-    if (currentMemory === memorySlides.length - 1) {
-      nextMemoryBtn.innerHTML = "Next Surprise → 💌";
-    } else {
-      nextMemoryBtn.innerHTML = "Next Memory → ✨";
+      // Last photo पर button बदलना
+      if (currentMemory === memorySlides.length - 1) {
+        nextMemoryBtn.innerHTML = "Next Surprise → 💌";
+      }
+
+      // Smoothly photo पर ले जाए
+      memorySlides[currentMemory].scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+    } 
+    
+    // 📸 Photo 8 के बाद BIG ENVELOPE
+    else {
+
+      // Photos section hide
+      memoryReveal.classList.remove("show-memories");
+
+      memoryReveal.style.display = "none";
+
+      // Big envelope show
+      if (bigLetterSection) {
+
+        bigLetterSection.classList.add("show-letter");
+
+        setTimeout(() => {
+          bigLetterSection.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }, 300);
+
+      }
+
     }
 
   });
