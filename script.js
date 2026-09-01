@@ -1,533 +1,705 @@
-// ==========================================
-// 💝 START → IMPORTANT QUESTION → BIRTHDAY
-// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
 
-const startBtn = document.getElementById("startBtn");
-const surpriseBtn = document.getElementById("surpriseBtn");
+  /* =========================================
+     GET ALL SCREENS
+     ========================================= */
 
-const choiceScreen = document.getElementById("choiceScreen");
-const welcomeScreen = document.getElementById("welcomeScreen");
-const birthdayScreen = document.getElementById("birthdayScreen");
-const messageScreen = document.getElementById("messageScreen");
-
-
-// ------------------------------------------
-// 🌸 INITIAL STATE
-// ------------------------------------------
-
-if (choiceScreen) {
-  choiceScreen.style.display = "flex";
-}
-
-if (welcomeScreen) {
-  welcomeScreen.style.display = "none";
-}
-
-if (birthdayScreen) {
-  birthdayScreen.style.display = "none";
-}
-
-if (messageScreen) {
-  messageScreen.style.display = "none";
-}
+  const screens = {
+    question: document.getElementById("questionScreen"),
+    birthday: document.getElementById("birthdayScreen"),
+    cake: document.getElementById("cakeScreen"),
+    envelope: document.getElementById("envelopeScreen"),
+    memories: document.getElementById("memoriesScreen"),
+    letterEnvelope: document.getElementById("letterEnvelopeScreen"),
+    letter: document.getElementById("letterScreen"),
+    final: document.getElementById("finalScreen")
+  };
 
 
-// ------------------------------------------
-// 🎁 YES/NO SCREEN
-// ------------------------------------------
+  /* =========================================
+     SCREEN CONTROLLER
+     ========================================= */
 
-function sayYes() {
+  function showScreen(screen) {
 
-  const emoji = document.getElementById("choiceEmoji");
-  const title = document.getElementById("choiceTitle");
-  const text = document.getElementById("choiceText");
-  const buttons = document.querySelector(".choice-buttons");
-
-  emoji.innerHTML = "🤩🎉🥳";
-
-  title.innerHTML = "YAYYYYY!!! 😍✨";
-
-  text.innerHTML =
-    "I knew you would say YES! 🥹💖<br>" +
-    "Get ready for something special... 🎁";
-
-  buttons.style.display = "none";
-
-  setTimeout(() => {
-
-    choiceScreen.style.display = "none";
-
-    birthdayScreen.style.display = "flex";
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
+    Object.values(screens).forEach((item) => {
+      if (item) {
+        item.classList.add("hidden");
+      }
     });
 
-    launchConfetti();
+    if (screen) {
+      screen.classList.remove("hidden");
 
-  }, 2500);
-}
+      setTimeout(() => {
+        screen.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 100);
+    }
+  }
 
 
-// ------------------------------------------
-// 😤 NO BUTTON
-// ------------------------------------------
+  /* =========================================
+     YES / NO
+     ========================================= */
 
-function sayNo() {
-
-  const emoji = document.getElementById("choiceEmoji");
-  const title = document.getElementById("choiceTitle");
-  const text = document.getElementById("choiceText");
+  const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
 
-  emoji.innerHTML = "😤";
+  const questionEmoji = document.getElementById("questionEmoji");
+  const questionTitle = document.getElementById("questionTitle");
+  const questionText = document.getElementById("questionText");
 
-  title.innerHTML = "EXCUSE ME?! 😤";
+  if (yesBtn) {
 
-  text.innerHTML =
-    "Dobara socho! Itni mehnat se surprise banaya hai " +
-    "aur tum NO bol rahe ho?! 😒💢";
+    yesBtn.addEventListener("click", () => {
 
-  noBtn.innerHTML = "NO... Sorry 😭";
+      questionEmoji.innerHTML = "🤩🎉🥳";
+      questionTitle.innerHTML = "YAYYYYY!!! 😍✨";
 
-  setTimeout(() => {
+      questionText.innerHTML =
+        "I knew you would say YES! 🥹💖<br>" +
+        "Get ready for something really special... 🎁✨";
 
-    emoji.innerHTML = "😠";
+      yesBtn.style.display = "none";
 
-    title.innerHTML = "Ab YES dabao! 😤👉";
-
-    text.innerHTML =
-      "Warna surprise dekhne nahi milega! 😒🎁";
-
-  }, 1800);
-}
-
-
-// ------------------------------------------
-// 🎉 CONFETTI
-// ------------------------------------------
-
-function launchConfetti() {
-
-  for (let i = 0; i < 80; i++) {
-
-    const confetti = document.createElement("span");
-
-    confetti.innerHTML =
-      ["🎉", "✨", "💖", "🎊"][
-        Math.floor(Math.random() * 4)
-      ];
-
-    confetti.style.position = "fixed";
-    confetti.style.left =
-      Math.random() * 100 + "vw";
-
-    confetti.style.top = "-30px";
-
-    confetti.style.fontSize =
-      Math.random() * 18 + 15 + "px";
-
-    confetti.style.zIndex = "9999";
-    confetti.style.pointerEvents = "none";
-
-    document.body.appendChild(confetti);
-
-    const duration =
-      Math.random() * 2500 + 1500;
-
-    const distance =
-      window.innerHeight + 100;
-
-    confetti.animate(
-      [
-        {
-          transform: "translateY(0) rotate(0deg)",
-          opacity: 1
-        },
-        {
-          transform:
-            `translateY(${distance}px) rotate(${Math.random() * 720}deg)`,
-          opacity: 0
-        }
-      ],
-      {
-        duration: duration,
-        easing: "cubic-bezier(.25,.46,.45,.94)"
+      if (noBtn) {
+        noBtn.style.display = "none";
       }
-    );
 
-    setTimeout(() => {
-      confetti.remove();
-    }, duration);
-  }
-}
+      launchConfetti();
 
+      setTimeout(() => {
+        showScreen(screens.birthday);
+      }, 2300);
 
-// ------------------------------------------
-// 💌 OPEN YOUR SURPRISE
-// ------------------------------------------
-
-if (surpriseBtn) {
-
-  surpriseBtn.addEventListener("click", () => {
-
-    birthdayScreen.style.display = "none";
-
-    messageScreen.style.display = "flex";
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
     });
 
-    launchConfetti();
-
-  });
-
-}
-
-
-// ------------------------------------------
-// 🎵 OLD START BUTTON — DISABLED
-// ------------------------------------------
-
-// Start button ab use nahi ho raha,
-// kyunki Important Question pehle hi aa raha hai.
-// PREMIUM ENVELOPE OPEN
-
-const envelope = document.getElementById("envelope");
-
-envelope.addEventListener("click", () => {
-
-  // Envelope opens
-  envelope.classList.add("open");
-
-  // Photos section
-  const memories = document.getElementById("memoryReveal");
-
-  // Thoda delay — letter open hone ke baad photos appear
-  setTimeout(() => {
-    if (memories) {
-      memories.classList.add("show-memories");
-
-      // Photos section tak smoothly scroll
-      setTimeout(() => {
-        memories.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-      }, 300);
-    }
-  }, 1200);
-
-});
-
-// 🎂 CAKE CUTTING + BALLOON CELEBRATION
-
-const cutCakeBtn = document.getElementById("cutCakeBtn");
-const cakeSurprise = document.getElementById("cakeSurprise");
-const cakeMessage = document.getElementById("cakeMessage");
-
-if (cutCakeBtn) {
-  cutCakeBtn.addEventListener("click", () => {
-
-    // Button hide
-    cutCakeBtn.style.display = "none";
-
-    // Step 1: Knife enters
-    cakeSurprise.classList.add("cutting");
-
-    cakeMessage.innerHTML = "Cutting the cake... 🔪🎂";
-
-    // Step 2: Knife cake par pahunchne ke baad cut
-    setTimeout(() => {
-      cakeSurprise.classList.remove("cutting");
-      cakeSurprise.classList.add("cut");
-
-      cakeMessage.innerHTML =
-        "YAYYYYY!!! Happy Birthday! 🥳🎂✨";
-    }, 900);
-
-    // Step 3: Cake split ke baad balloons
-    setTimeout(() => {
-      createBirthdayBalloons();
-      createCakeConfetti();
-    }, 1700);
-
-  });
-}
-
-
-function createBirthdayBalloons() {
-
-  const balloons = ["🎈", "🎈", "🎈", "🎈", "🎈", "🎈"];
-
-  balloons.forEach((balloon, index) => {
-
-    const element = document.createElement("div");
-
-    element.innerHTML = balloon;
-
-    element.style.position = "fixed";
-    element.style.left = (10 + index * 15) + "vw";
-    element.style.bottom = "-80px";
-    element.style.fontSize =
-      (45 + Math.random() * 25) + "px";
-
-    element.style.zIndex = "10001";
-    element.style.pointerEvents = "none";
-
-    document.body.appendChild(element);
-
-    const duration = 3500 + Math.random() * 1500;
-
-    element.animate(
-      [
-        {
-          transform: "translateY(0) scale(0.7)",
-          opacity: 0
-        },
-        {
-          transform: "translateY(-40vh) scale(1)",
-          opacity: 1
-        },
-        {
-          transform:
-            `translateY(-${window.innerHeight + 150}px) scale(1.1) rotate(12deg)`,
-          opacity: 0
-        }
-      ],
-      {
-        duration: duration,
-        easing: "ease-out"
-      }
-    );
-
-    setTimeout(() => {
-      element.remove();
-    }, duration);
-  });
-}
-
-
-function createCakeConfetti() {
-
-  const emojis = [
-    "🎉",
-    "🎊",
-    "✨",
-    "💖",
-    "💕",
-    "🥳",
-    "⭐"
-  ];
-
-  for (let i = 0; i < 70; i++) {
-
-    const piece = document.createElement("span");
-
-    piece.innerHTML =
-      emojis[Math.floor(Math.random() * emojis.length)];
-
-    piece.style.position = "fixed";
-    piece.style.left = "50vw";
-    piece.style.top = "45vh";
-    piece.style.fontSize =
-      (12 + Math.random() * 18) + "px";
-
-    piece.style.zIndex = "10002";
-    piece.style.pointerEvents = "none";
-
-    document.body.appendChild(piece);
-
-    const angle =
-      Math.random() * Math.PI * 2;
-
-    const distance =
-      150 + Math.random() * 350;
-
-    const x =
-      Math.cos(angle) * distance;
-
-    const y =
-      Math.sin(angle) * distance;
-
-    const duration =
-      1200 + Math.random() * 1000;
-
-    piece.animate(
-      [
-        {
-          transform: "translate(0, 0) scale(0)",
-          opacity: 1
-        },
-        {
-          transform:
-            `translate(${x}px, ${y}px) scale(1.2)`,
-          opacity: 0
-        }
-      ],
-      {
-        duration: duration,
-        easing: "cubic-bezier(.2,.8,.3,1)"
-      }
-    );
-
-    setTimeout(() => {
-      piece.remove();
-    }, duration);
   }
-}
-// =================================================
-// 📸💌 FINAL MEMORY → ENVELOPE → LETTER FLOW
-// =================================================
-
-const memorySlides =
-  document.querySelectorAll(".memory-slide");
-
-const nextMemoryBtn =
-  document.getElementById("nextMemoryBtn");
-
-const memoryReveal =
-  document.getElementById("memoryReveal");
-
-const bigLetterSection =
-  document.getElementById("bigLetterSection");
-
-const openBigLetterBtn =
-  document.getElementById("openBigLetterBtn");
-
-const personalLetter =
-  document.getElementById("personalLetter");
-
-const finalCelebration =
-  document.getElementById("finalCelebration");
-
-let currentMemory = 0;
 
 
-// -----------------------------------------
-// 📸 SHOW MEMORIES
-// -----------------------------------------
+  if (noBtn) {
 
-function showMemories() {
+    noBtn.addEventListener("click", () => {
 
-  if (!memoryReveal) return;
+      questionEmoji.innerHTML = "😤💢";
 
-  memoryReveal.classList.add("show-memories");
+      questionTitle.innerHTML =
+        "EXCUSE ME?! 😤";
 
-  memorySlides.forEach((slide, index) => {
-    slide.classList.toggle("active", index === 0);
-  });
+      questionText.innerHTML =
+        "Itni mehnat se surprise banaya hai<br>" +
+        "aur tum NO bol rahe ho?! 😒💢";
 
-  currentMemory = 0;
+      noBtn.innerHTML =
+        "NO... Sorry 😭";
+
+      setTimeout(() => {
+
+        questionEmoji.innerHTML = "😠👉";
+
+        questionTitle.innerHTML =
+          "Ab YES dabao! 😤";
+
+        questionText.innerHTML =
+          "Warna surprise dekhne nahi milega! 😒🎁";
+
+      }, 1800);
+
+    });
+
+  }
+
+
+  /* =========================================
+     BIRTHDAY → CAKE
+     ========================================= */
+
+  const startCakeBtn =
+    document.getElementById("startCakeBtn");
+
+  if (startCakeBtn) {
+
+    startCakeBtn.addEventListener("click", () => {
+
+      showScreen(screens.cake);
+
+    });
+
+  }
+
+
+  /* =========================================
+     CAKE CUTTING
+     ========================================= */
+
+  const cutCakeBtn =
+    document.getElementById("cutCakeBtn");
+
+  const cake =
+    document.getElementById("birthdayCake");
+
+  const cakeStatus =
+    document.getElementById("cakeStatus");
+
+  const continueAfterCake =
+    document.getElementById("continueAfterCake");
+
+  if (cutCakeBtn && cake) {
+
+    cutCakeBtn.addEventListener("click", () => {
+
+      cutCakeBtn.style.display = "none";
+
+      cake.classList.add("cutting");
+
+      if (cakeStatus) {
+        cakeStatus.innerHTML =
+          "Cutting the cake... 🔪🎂";
+      }
+
+      setTimeout(() => {
+
+        cake.classList.remove("cutting");
+        cake.classList.add("cut");
+
+        if (cakeStatus) {
+          cakeStatus.innerHTML =
+            "YAYYYYY!!! 🎂🥳 Happy Birthday! ✨";
+        }
+
+        createBirthdayBalloons();
+        createCakeConfetti();
+
+      }, 1000);
+
+
+      setTimeout(() => {
+
+        if (continueAfterCake) {
+          continueAfterCake.classList.remove("hidden");
+        }
+
+      }, 2300);
+
+    });
+
+  }
+
+
+  /* =========================================
+     CAKE → SMALL ENVELOPE
+     ========================================= */
+
+  if (continueAfterCake) {
+
+    continueAfterCake.addEventListener("click", () => {
+
+      showScreen(screens.envelope);
+
+    });
+
+  }
+
+
+  /* =========================================
+     SMALL ENVELOPE
+     ========================================= */
+
+  const smallEnvelope =
+    document.getElementById("smallEnvelope");
+
+  const openEnvelopeBtn =
+    document.getElementById("openEnvelopeBtn");
+
+  const smallMessage =
+    document.getElementById("smallMessage");
+
+  const continueToMemories =
+    document.getElementById("continueToMemories");
+
+
+  if (openEnvelopeBtn && smallEnvelope) {
+
+    openEnvelopeBtn.addEventListener("click", () => {
+
+      smallEnvelope.classList.add("open");
+
+      openEnvelopeBtn.style.display = "none";
+
+      setTimeout(() => {
+
+        if (smallMessage) {
+          smallMessage.classList.remove("hidden");
+        }
+
+      }, 900);
+
+      setTimeout(() => {
+
+        if (continueToMemories) {
+          continueToMemories.classList.remove("hidden");
+        }
+
+      }, 1800);
+
+    });
+
+  }
+
+
+  /* =========================================
+     ENVELOPE → MEMORIES
+     ========================================= */
+
+  if (continueToMemories) {
+
+    continueToMemories.addEventListener("click", () => {
+
+      showScreen(screens.memories);
+
+    });
+
+  }
+
+
+  /* =========================================
+     MEMORIES — ONE BY ONE
+     ========================================= */
+
+  const memorySlides =
+    document.querySelectorAll(".memory-slide");
+
+  const nextMemoryBtn =
+    document.getElementById("nextMemoryBtn");
+
+  let currentMemory = 0;
+
+
+  function showMemory(index) {
+
+    memorySlides.forEach((slide, i) => {
+
+      slide.classList.toggle(
+        "active",
+        i === index
+      );
+
+    });
+
+  }
+
+
+  if (memorySlides.length > 0) {
+
+    showMemory(0);
+
+  }
+
 
   if (nextMemoryBtn) {
-    nextMemoryBtn.innerHTML =
-      "Next Memory → ✨";
-  }
 
-}
+    nextMemoryBtn.addEventListener("click", () => {
 
+      if (currentMemory < memorySlides.length - 1) {
 
-// -----------------------------------------
-// 📸 NEXT MEMORY
-// -----------------------------------------
+        currentMemory++;
 
-if (nextMemoryBtn) {
+        showMemory(currentMemory);
 
-  nextMemoryBtn.addEventListener("click", () => {
+        if (
+          currentMemory ===
+          memorySlides.length - 1
+        ) {
 
-    // अभी और photos बाकी हैं
-    if (currentMemory < memorySlides.length - 1) {
+          nextMemoryBtn.innerHTML =
+            "Open One Last Surprise 💌";
 
-      memorySlides[currentMemory]
-        .classList.remove("active");
+        } else {
 
-      currentMemory++;
+          nextMemoryBtn.innerHTML =
+            "Next Memory → ✨";
 
-      memorySlides[currentMemory]
-        .classList.add("active");
+        }
 
-      if (currentMemory === memorySlides.length - 1) {
+        setTimeout(() => {
 
-        nextMemoryBtn.innerHTML =
-          "Next Surprise → 💌";
+          memorySlides[currentMemory]
+            .scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+        }, 100);
 
       } else {
 
-        nextMemoryBtn.innerHTML =
-          "Next Memory → ✨";
+        showScreen(screens.letterEnvelope);
 
       }
 
-      memorySlides[currentMemory]
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
+    });
 
-      return;
-    }
+  }
 
 
-    // -----------------------------------------
-    // 📸 PHOTO 8 → BIG ENVELOPE
-    // -----------------------------------------
+  /* =========================================
+     BIG ENVELOPE
+     ========================================= */
 
-    memoryReveal.style.display = "none";
+  const bigEnvelope =
+    document.getElementById("bigEnvelope");
 
-    if (bigLetterSection) {
+  const openBigLetterBtn =
+    document.getElementById("openBigLetterBtn");
 
-      bigLetterSection.classList.add("show-letter");
+
+  if (openBigLetterBtn && bigEnvelope) {
+
+    openBigLetterBtn.addEventListener("click", () => {
+
+      bigEnvelope.classList.add("open");
+
+      openBigLetterBtn.style.display = "none";
 
       setTimeout(() => {
 
-        bigLetterSection.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
+        showScreen(screens.letter);
 
-      }, 300);
+      }, 1300);
+
+    });
+
+  }
+
+
+  /* =========================================
+     LETTER → FINAL
+     ========================================= */
+
+  const finishLetterBtn =
+    document.getElementById("finishLetterBtn");
+
+  if (finishLetterBtn) {
+
+    finishLetterBtn.addEventListener("click", () => {
+
+      showScreen(screens.final);
+
+      setTimeout(() => {
+
+        launchFinalConfetti();
+        createFloatingHearts();
+
+      }, 500);
+
+    });
+
+  }
+
+
+  /* =========================================
+     CONFETTI
+     ========================================= */
+
+  function launchConfetti() {
+
+    const emojis = [
+      "🎉",
+      "🎊",
+      "✨",
+      "💖",
+      "💕",
+      "🥳"
+    ];
+
+    for (let i = 0; i < 70; i++) {
+
+      const piece =
+        document.createElement("span");
+
+      piece.innerHTML =
+        emojis[
+          Math.floor(
+            Math.random() * emojis.length
+          )
+        ];
+
+      piece.style.position = "fixed";
+      piece.style.left =
+        Math.random() * 100 + "vw";
+      piece.style.top = "-30px";
+      piece.style.fontSize =
+        15 + Math.random() * 20 + "px";
+
+      piece.style.zIndex = "99999";
+      piece.style.pointerEvents = "none";
+
+      document.body.appendChild(piece);
+
+      const duration =
+        1800 + Math.random() * 1800;
+
+      piece.animate(
+        [
+          {
+            transform:
+              "translateY(0) rotate(0deg)",
+            opacity: 1
+          },
+          {
+            transform:
+              `translateY(${window.innerHeight + 100}px)
+               rotate(${Math.random() * 720}deg)`,
+            opacity: 0
+          }
+        ],
+        {
+          duration: duration,
+          easing: "ease-out"
+        }
+      );
+
+      setTimeout(() => {
+        piece.remove();
+      }, duration);
 
     }
 
-  });
-
-}
+  }
 
 
-// -----------------------------------------
-// 💌 OPEN BIG ENVELOPE
-// -----------------------------------------
+  /* =========================================
+     CAKE BALLOONS
+     ========================================= */
 
-if (openBigLetterBtn) {
+  function createBirthdayBalloons() {
 
-  openBigLetterBtn.addEventListener("click", () => {
+    for (let i = 0; i < 7; i++) {
 
-    if (!bigLetterSection) return;
+      const balloon =
+        document.createElement("div");
 
-    // Envelope opens
-    bigLetterSection.classList.add("opened");
+      balloon.innerHTML = "🎈";
 
-    // Button disappears
-    openBigLetterBtn.style.display = "none";
+      balloon.style.position = "fixed";
+      balloon.style.left =
+        (5 + i * 14) + "vw";
+      balloon.style.bottom = "-80px";
+      balloon.style.fontSize =
+        45 + Math.random() * 25 + "px";
 
-    // Letter ke liye scroll
-    setTimeout(() => {
+      balloon.style.zIndex = "99999";
+      balloon.style.pointerEvents = "none";
 
-      if (personalLetter) {
+      document.body.appendChild(balloon);
 
-        personalLetter.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
+      const duration =
+        3000 + Math.random() * 1800;
 
-      }
+      balloon.animate(
+        [
+          {
+            transform:
+              "translateY(0) scale(.7)",
+            opacity: 0
+          },
+          {
+            transform:
+              "translateY(-50vh) scale(1)",
+            opacity: 1
+          },
+          {
+            transform:
+              `translateY(-${window.innerHeight + 150}px)
+               rotate(15deg)`,
+            opacity: 0
+          }
+        ],
+        {
+          duration: duration,
+          easing: "ease-out"
+        }
+      );
 
-    }, 900);
+      setTimeout(() => {
+        balloon.remove();
+      }, duration);
 
-  });
+    }
 
-}
+  }
+
+
+  /* =========================================
+     CAKE CONFETTI
+     ========================================= */
+
+  function createCakeConfetti() {
+
+    const emojis = [
+      "🎉",
+      "🎊",
+      "✨",
+      "💖",
+      "💕",
+      "🥳",
+      "⭐"
+    ];
+
+    for (let i = 0; i < 60; i++) {
+
+      const piece =
+        document.createElement("span");
+
+      piece.innerHTML =
+        emojis[
+          Math.floor(
+            Math.random() * emojis.length
+          )
+        ];
+
+      piece.style.position = "fixed";
+      piece.style.left = "50vw";
+      piece.style.top = "45vh";
+      piece.style.fontSize =
+        12 + Math.random() * 18 + "px";
+
+      piece.style.zIndex = "99999";
+      piece.style.pointerEvents = "none";
+
+      document.body.appendChild(piece);
+
+      const angle =
+        Math.random() * Math.PI * 2;
+
+      const distance =
+        150 + Math.random() * 300;
+
+      const x =
+        Math.cos(angle) * distance;
+
+      const y =
+        Math.sin(angle) * distance;
+
+      const duration =
+        1000 + Math.random() * 1000;
+
+      piece.animate(
+        [
+          {
+            transform:
+              "translate(0,0) scale(0)",
+            opacity: 1
+          },
+          {
+            transform:
+              `translate(${x}px,${y}px) scale(1.2)`,
+            opacity: 0
+          }
+        ],
+        {
+          duration: duration,
+          easing: "ease-out"
+        }
+      );
+
+      setTimeout(() => {
+        piece.remove();
+      }, duration);
+
+    }
+
+  }
+
+
+  /* =========================================
+     FINAL CONFETTI
+     ========================================= */
+
+  function launchFinalConfetti() {
+
+    launchConfetti();
+    launchConfetti();
+
+  }
+
+
+  /* =========================================
+     FLOATING HEARTS
+     ========================================= */
+
+  function createFloatingHearts() {
+
+    const hearts = [
+      "❤️",
+      "💖",
+      "💕",
+      "💗",
+      "✨"
+    ];
+
+    for (let i = 0; i < 30; i++) {
+
+      const heart =
+        document.createElement("span");
+
+      heart.innerHTML =
+        hearts[
+          Math.floor(
+            Math.random() * hearts.length
+          )
+        ];
+
+      heart.style.position = "fixed";
+      heart.style.left =
+        Math.random() * 100 + "vw";
+      heart.style.bottom = "-50px";
+      heart.style.fontSize =
+        18 + Math.random() * 20 + "px";
+
+      heart.style.zIndex = "99999";
+      heart.style.pointerEvents = "none";
+
+      document.body.appendChild(heart);
+
+      const duration =
+        2500 + Math.random() * 2500;
+
+      heart.animate(
+        [
+          {
+            transform:
+              "translateY(0) scale(.8)",
+            opacity: 0
+          },
+          {
+            transform:
+              "translateY(-50vh) scale(1.1)",
+            opacity: 1,
+            offset: 0.3
+          },
+          {
+            transform:
+              `translateY(-${window.innerHeight + 100}px)
+               scale(1.3)`,
+            opacity: 0
+          }
+        ],
+        {
+          duration: duration,
+          easing: "ease-out"
+        }
+      );
+
+      setTimeout(() => {
+        heart.remove();
+      }, duration);
+
+    }
+
+  }
+
+});
