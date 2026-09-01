@@ -1728,3 +1728,106 @@ button:hover {
     transform: translateY(0) scale(1);
   }
 }
+/* =================================================
+   🎬 FINAL STEP-BY-STEP FLOW
+   ================================================= */
+
+/* 📸 Memories — initially hidden */
+#memoryReveal {
+  display: none !important;
+}
+
+#memoryReveal.show-memories {
+  display: block !important;
+}
+
+/* Sirf active photo */
+#memoryReveal .memory-slide {
+  display: none !important;
+}
+
+#memoryReveal .memory-slide.active {
+  display: block !important;
+  animation: memoryRevealFinal 0.8s ease forwards;
+}
+
+/* 💌 Big envelope — initially hidden */
+#bigLetterSection {
+  display: none !important;
+  opacity: 0;
+}
+
+#bigLetterSection.show-letter {
+  display: block !important;
+  animation: bigSectionReveal 1s ease forwards;
+}
+
+/* 📜 Letter — initially hidden */
+#personalLetter {
+  display: none !important;
+}
+
+#bigLetterSection.opened #personalLetter {
+  display: block !important;
+  animation: letterRevealFinal 1s ease forwards;
+}
+
+/* 🎉 Final celebration — initially hidden */
+#finalCelebration {
+  display: none !important;
+}
+
+#bigLetterSection.letter-finished #finalCelebration {
+  display: block !important;
+  animation: finalCelebrationReveal 1.2s ease forwards;
+}
+
+/* Animations */
+
+@keyframes memoryRevealFinal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bigSectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes letterRevealFinal {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes finalCelebrationReveal {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
