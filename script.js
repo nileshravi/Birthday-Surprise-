@@ -430,99 +430,154 @@ function createCakeConfetti() {
     }, duration);
   }
 }
-// 📸 ONE-BY-ONE MEMORY CONTROLLER
+// =================================================
+// 📸💌 FINAL MEMORY → ENVELOPE → LETTER FLOW
+// =================================================
 
-const memorySlides = document.querySelectorAll(".memory-slide");
-const nextMemoryBtn = document.getElementById("nextMemoryBtn");
+const memorySlides =
+  document.querySelectorAll(".memory-slide");
 
-const memoryReveal = document.getElementById("memoryReveal");
-const bigLetterSection = document.getElementById("bigLetterSection");
+const nextMemoryBtn =
+  document.getElementById("nextMemoryBtn");
+
+const memoryReveal =
+  document.getElementById("memoryReveal");
+
+const bigLetterSection =
+  document.getElementById("bigLetterSection");
+
+const openBigLetterBtn =
+  document.getElementById("openBigLetterBtn");
+
+const personalLetter =
+  document.getElementById("personalLetter");
+
+const finalCelebration =
+  document.getElementById("finalCelebration");
 
 let currentMemory = 0;
 
-if (nextMemoryBtn && memorySlides.length > 0) {
+
+// -----------------------------------------
+// 📸 SHOW MEMORIES
+// -----------------------------------------
+
+function showMemories() {
+
+  if (!memoryReveal) return;
+
+  memoryReveal.classList.add("show-memories");
+
+  memorySlides.forEach((slide, index) => {
+    slide.classList.toggle("active", index === 0);
+  });
+
+  currentMemory = 0;
+
+  if (nextMemoryBtn) {
+    nextMemoryBtn.innerHTML =
+      "Next Memory → ✨";
+  }
+
+}
+
+
+// -----------------------------------------
+// 📸 NEXT MEMORY
+// -----------------------------------------
+
+if (nextMemoryBtn) {
 
   nextMemoryBtn.addEventListener("click", () => {
 
-    // अभी last photo नहीं है
+    // अभी और photos बाकी हैं
     if (currentMemory < memorySlides.length - 1) {
 
-      // Current photo hide
-      memorySlides[currentMemory].classList.remove("active");
+      memorySlides[currentMemory]
+        .classList.remove("active");
 
-      // Next photo
       currentMemory++;
 
-      // Next photo show
-      memorySlides[currentMemory].classList.add("active");
+      memorySlides[currentMemory]
+        .classList.add("active");
 
-      // Last photo पर button बदलना
       if (currentMemory === memorySlides.length - 1) {
-        nextMemoryBtn.innerHTML = "Next Surprise → 💌";
-      }
 
-      // Smoothly photo पर ले जाए
-      memorySlides[currentMemory].scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+        nextMemoryBtn.innerHTML =
+          "Next Surprise → 💌";
 
-    } 
-    
-    // 📸 Photo 8 के बाद BIG ENVELOPE
-    else {
+      } else {
 
-      // Photos section hide
-      memoryReveal.classList.remove("show-memories");
-
-      memoryReveal.style.display = "none";
-
-      // Big envelope show
-      if (bigLetterSection) {
-
-        bigLetterSection.classList.add("show-letter");
-
-        setTimeout(() => {
-          bigLetterSection.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-        }, 300);
+        nextMemoryBtn.innerHTML =
+          "Next Memory → ✨";
 
       }
+
+      memorySlides[currentMemory]
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      return;
+    }
+
+
+    // -----------------------------------------
+    // 📸 PHOTO 8 → BIG ENVELOPE
+    // -----------------------------------------
+
+    memoryReveal.style.display = "none";
+
+    if (bigLetterSection) {
+
+      bigLetterSection.classList.add("show-letter");
+
+      setTimeout(() => {
+
+        bigLetterSection.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      }, 300);
 
     }
 
   });
 
 }
-const openBigLetterBtn =
-  document.getElementById("openBigLetterBtn");
 
-if (openBigLetterBtn && bigLetterSection) {
+
+// -----------------------------------------
+// 💌 OPEN BIG ENVELOPE
+// -----------------------------------------
+
+if (openBigLetterBtn) {
 
   openBigLetterBtn.addEventListener("click", () => {
+
+    if (!bigLetterSection) return;
 
     // Envelope opens
     bigLetterSection.classList.add("opened");
 
-    // Button hide
+    // Button disappears
     openBigLetterBtn.style.display = "none";
 
-    // Letter par smoothly scroll
+    // Letter ke liye scroll
     setTimeout(() => {
 
-      const letter =
-        document.getElementById("personalLetter");
+      if (personalLetter) {
 
-      if (letter) {
-        letter.scrollIntoView({
+        personalLetter.scrollIntoView({
           behavior: "smooth",
           block: "center"
         });
+
       }
 
-    }, 700);
+    }, 900);
 
   });
 
