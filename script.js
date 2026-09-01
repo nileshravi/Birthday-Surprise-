@@ -101,31 +101,7 @@ function sayNo() {
     text.innerHTML = "Warna surprise dekhne nahi milega! 😒🎁";
   }, 1800);
 }
-// PHOTO FULL-SCREEN VIEWER
 
-const memoryPhotos = document.querySelectorAll(".memory-photo img");
-const photoViewer = document.getElementById("photoViewer");
-const viewerImage = document.getElementById("viewerImage");
-const closeViewer = document.getElementById("closeViewer");
-
-memoryPhotos.forEach((photo) => {
-  photo.addEventListener("click", () => {
-    viewerImage.src = photo.src;
-    viewerImage.alt = photo.alt;
-    photoViewer.classList.add("show");
-  });
-});
-
-closeViewer.addEventListener("click", () => {
-  photoViewer.classList.remove("show");
-});
-
-// Background par tap karke bhi close hoga
-photoViewer.addEventListener("click", (event) => {
-  if (event.target === photoViewer) {
-    photoViewer.classList.remove("show");
-  }
-});
 // PREMIUM ENVELOPE OPEN
 
 const envelope = document.getElementById("envelope");
