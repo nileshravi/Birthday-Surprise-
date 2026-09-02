@@ -147,6 +147,18 @@ const cake =
 const cakeStatus =
   document.getElementById("cakeStatus");
 
+const continueAfterCake =
+  document.getElementById("continueAfterCake");
+
+const leftCake =
+  document.querySelector(".cake-left");
+
+const rightCake =
+  document.querySelector(".cake-right");
+
+const knife =
+  document.getElementById("knife");
+
 if (cutCakeBtn) {
 
   cutCakeBtn.addEventListener("click", () => {
@@ -154,35 +166,27 @@ if (cutCakeBtn) {
     cutCakeBtn.disabled = true;
     cutCakeBtn.style.opacity = "0.5";
 
-    const leftCake =
-      document.querySelector(".cake-left");
-
-    const rightCake =
-      document.querySelector(".cake-right");
-
-    const knife =
-      document.getElementById("knife");
-
     if (cakeStatus) {
       cakeStatus.innerHTML =
         "Cutting the cake... 🔪🎂";
     }
 
-    /* 🔪 KNIFE CUTTING */
+    /* 🔪 KNIFE GOES DOWN */
     if (knife) {
 
       knife.animate(
         [
           {
-            transform: "translateX(-50%) rotate(-20deg)"
+            transform:
+              "translateX(-50%) translateY(-15px) rotate(-18deg)"
           },
           {
             transform:
-              "translateX(-50%) translateY(65px) rotate(8deg)"
+              "translateX(-50%) translateY(20px) rotate(-8deg)"
           },
           {
             transform:
-              "translateX(-50%) translateY(85px) rotate(8deg)"
+              "translateX(-50%) translateY(75px) rotate(5deg)"
           }
         ],
         {
@@ -194,55 +198,56 @@ if (cutCakeBtn) {
 
     }
 
-    /* 🎂 LEFT HALF */
-    if (leftCake) {
+    /* 🎂 CAKE SPLIT — AFTER KNIFE */
+    setTimeout(() => {
 
-      leftCake.animate(
-        [
+      if (leftCake) {
+
+        leftCake.animate(
+          [
+            {
+              transform: "translateX(0)"
+            },
+            {
+              transform: "translateX(-12px)"
+            },
+            {
+              transform: "translateX(-45px) rotate(-3deg)"
+            }
+          ],
           {
-            transform: "translateX(0) rotate(0deg)"
-          },
-          {
-            transform: "translateX(-8px) rotate(-1deg)"
-          },
-          {
-            transform: "translateX(-55px) rotate(-4deg)"
+            duration: 1000,
+            easing: "ease-out",
+            fill: "forwards"
           }
-        ],
-        {
-          duration: 1500,
-          delay: 500,
-          easing: "ease-out",
-          fill: "forwards"
-        }
-      );
+        );
 
-    }
+      }
 
-    /* 🎂 RIGHT HALF */
-    if (rightCake) {
+      if (rightCake) {
 
-      rightCake.animate(
-        [
+        rightCake.animate(
+          [
+            {
+              transform: "translateX(0)"
+            },
+            {
+              transform: "translateX(12px)"
+            },
+            {
+              transform: "translateX(45px) rotate(3deg)"
+            }
+          ],
           {
-            transform: "translateX(0) rotate(0deg)"
-          },
-          {
-            transform: "translateX(8px) rotate(1deg)"
-          },
-          {
-            transform: "translateX(55px) rotate(4deg)"
+            duration: 1000,
+            easing: "ease-out",
+            fill: "forwards"
           }
-        ],
-        {
-          duration: 1500,
-          delay: 500,
-          easing: "ease-out",
-          fill: "forwards"
-        }
-      );
+        );
 
-    }
+      }
+
+    }, 1100);
 
     /* 🎉 CELEBRATION */
     setTimeout(() => {
@@ -255,12 +260,35 @@ if (cutCakeBtn) {
       createBirthdayBalloons();
       createCakeConfetti();
 
-    }, 1800);
+    }, 2200);
+
+    /* 💌 NEXT BUTTON */
+    setTimeout(() => {
+
+      if (continueAfterCake) {
+        continueAfterCake.classList.remove("hidden");
+      }
+
+    }, 2800);
 
   });
 
 }
 
+
+/* =========================================
+   CAKE → SMALL ENVELOPE
+   ========================================= */
+
+if (continueAfterCake) {
+
+  continueAfterCake.addEventListener("click", () => {
+
+    showScreen(screens.envelope);
+
+  });
+
+}
 
   /* =========================================
      CAKE → SMALL ENVELOPE
