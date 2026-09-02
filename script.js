@@ -306,50 +306,56 @@ if (continueAfterCake) {
 
 
   /* =========================================
-     SMALL ENVELOPE
-     ========================================= */
+   SMALL PINK ENVELOPE
+   ========================================= */
 
-  const smallEnvelope =
-    document.getElementById("smallEnvelope");
+const smallEnvelope =
+  document.getElementById("smallEnvelope");
 
-  const openEnvelopeBtn =
-    document.getElementById("openEnvelopeBtn");
+const openEnvelopeBtn =
+  document.getElementById("openEnvelopeBtn");
 
-  const smallMessage =
-    document.getElementById("smallMessage");
+const smallMessage =
+  document.getElementById("smallMessage");
 
-  const continueToMemories =
-    document.getElementById("continueToMemories");
+const memoriesBtn =
+  document.getElementById("memoriesBtn");
 
 
-  if (openEnvelopeBtn && smallEnvelope) {
+/* 💌 OPEN ENVELOPE */
 
-    openEnvelopeBtn.addEventListener("click", () => {
+if (openEnvelopeBtn && smallEnvelope) {
 
-      smallEnvelope.classList.add("open");
+  openEnvelopeBtn.addEventListener("click", () => {
 
-      openEnvelopeBtn.style.display = "none";
+    smallEnvelope.classList.add("open");
 
-      setTimeout(() => {
+    openEnvelopeBtn.style.display = "none";
 
-        if (smallMessage) {
-          smallMessage.classList.remove("hidden");
-        }
+    setTimeout(() => {
 
-      }, 900);
+      if (smallMessage) {
+        smallMessage.classList.remove("hidden");
+      }
 
-      setTimeout(() => {
+    }, 1000);
 
-        if (continueToMemories) {
-          continueToMemories.classList.remove("hidden");
-        }
+  });
 
-      }, 1800);
+}
 
-    });
 
-  }
+/* 📸 GO TO MEMORIES */
 
+if (memoriesBtn) {
+
+  memoriesBtn.addEventListener("click", () => {
+
+    showScreen(screens.memories);
+
+  });
+
+}
 
   /* =========================================
      ENVELOPE → MEMORIES
