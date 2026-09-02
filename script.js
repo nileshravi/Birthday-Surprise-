@@ -132,10 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     CAKE CUTTING
-     ========================================= */
-
-  /* =========================================
    CAKE CUTTING
    ========================================= */
 
@@ -156,23 +152,101 @@ if (cutCakeBtn) {
   cutCakeBtn.addEventListener("click", () => {
 
     cutCakeBtn.disabled = true;
-    cutCakeBtn.style.opacity = "0.6";
+    cutCakeBtn.style.opacity = "0.5";
 
-    if (cake) {
-      cake.classList.add("cutting");
-    }
+    const leftHalf =
+      document.querySelector(".cake-half-left");
+
+    const rightHalf =
+      document.querySelector(".cake-half-right");
+
+    const knife =
+      document.getElementById("cakeKnife");
 
     if (cakeStatus) {
       cakeStatus.innerHTML =
         "Cutting the cake... 🔪🎂";
     }
 
-    setTimeout(() => {
+    /* KNIFE MOVEMENT */
+    if (knife) {
 
-      if (cake) {
-        cake.classList.remove("cutting");
-        cake.classList.add("cut");
-      }
+      knife.animate(
+        [
+          {
+            transform:
+              "translateX(-50%) rotate(-18deg)"
+          },
+          {
+            transform:
+              "translateX(-50%) translateY(75px) rotate(8deg)"
+          },
+          {
+            transform:
+              "translateX(-50%) translateY(95px) rotate(8deg)"
+          }
+        ],
+        {
+          duration: 1200,
+          easing: "ease-in-out",
+          fill: "forwards"
+        }
+      );
+
+    }
+
+    /* LEFT CAKE HALF */
+    if (leftHalf) {
+
+      leftHalf.animate(
+        [
+          {
+            transform: "translateX(0) rotate(0deg)"
+          },
+          {
+            transform: "translateX(-8px) rotate(-1deg)"
+          },
+          {
+            transform: "translateX(-55px) rotate(-4deg)"
+          }
+        ],
+        {
+          duration: 1500,
+          delay: 500,
+          easing: "cubic-bezier(.2,.8,.2,1)",
+          fill: "forwards"
+        }
+      );
+
+    }
+
+    /* RIGHT CAKE HALF */
+    if (rightHalf) {
+
+      rightHalf.animate(
+        [
+          {
+            transform: "translateX(0) rotate(0deg)"
+          },
+          {
+            transform: "translateX(8px) rotate(1deg)"
+          },
+          {
+            transform: "translateX(55px) rotate(4deg)"
+          }
+        ],
+        {
+          duration: 1500,
+          delay: 500,
+          easing: "cubic-bezier(.2,.8,.2,1)",
+          fill: "forwards"
+        }
+      );
+
+    }
+
+    /* CELEBRATION */
+    setTimeout(() => {
 
       if (cakeStatus) {
         cakeStatus.innerHTML =
@@ -182,15 +256,16 @@ if (cutCakeBtn) {
       createBirthdayBalloons();
       createCakeConfetti();
 
-    }, 1000);
+    }, 1800);
 
+    /* CONTINUE BUTTON */
     setTimeout(() => {
 
       if (continueAfterCake) {
         continueAfterCake.classList.remove("hidden");
       }
 
-    }, 2300);
+    }, 2600);
 
   });
 
