@@ -135,58 +135,66 @@ document.addEventListener("DOMContentLoaded", () => {
      CAKE CUTTING
      ========================================= */
 
-  const cutCakeBtn =
-    document.getElementById("cutCakeBtn");
+  /* =========================================
+   CAKE CUTTING
+   ========================================= */
 
-  const cake =
-    document.getElementById("birthdayCake");
+const cutCakeBtn =
+  document.getElementById("cutCakeBtn");
 
-  const cakeStatus =
-    document.getElementById("cakeStatus");
+const cake =
+  document.getElementById("birthdayCake");
 
-  const continueAfterCake =
-    document.getElementById("continueAfterCake");
+const cakeStatus =
+  document.getElementById("cakeStatus");
 
-  if (cutCakeBtn && cake) {
+const continueAfterCake =
+  document.getElementById("continueAfterCake");
 
-    cutCakeBtn.addEventListener("click", () => {
+if (cutCakeBtn) {
 
-      cutCakeBtn.style.display = "none";
+  cutCakeBtn.addEventListener("click", () => {
 
+    cutCakeBtn.disabled = true;
+    cutCakeBtn.style.opacity = "0.6";
+
+    if (cake) {
       cake.classList.add("cutting");
+    }
+
+    if (cakeStatus) {
+      cakeStatus.innerHTML =
+        "Cutting the cake... 🔪🎂";
+    }
+
+    setTimeout(() => {
+
+      if (cake) {
+        cake.classList.remove("cutting");
+        cake.classList.add("cut");
+      }
 
       if (cakeStatus) {
         cakeStatus.innerHTML =
-          "Cutting the cake... 🔪🎂";
+          "YAYYYYY!!! 🎂🥳 Happy Birthday! ✨";
       }
 
-      setTimeout(() => {
+      createBirthdayBalloons();
+      createCakeConfetti();
 
-        cake.classList.remove("cutting");
-        cake.classList.add("cut");
+    }, 1000);
 
-        if (cakeStatus) {
-          cakeStatus.innerHTML =
-            "YAYYYYY!!! 🎂🥳 Happy Birthday! ✨";
-        }
+    setTimeout(() => {
 
-        createBirthdayBalloons();
-        createCakeConfetti();
+      if (continueAfterCake) {
+        continueAfterCake.classList.remove("hidden");
+      }
 
-      }, 1000);
+    }, 2300);
 
+  });
 
-      setTimeout(() => {
-
-        if (continueAfterCake) {
-          continueAfterCake.classList.remove("hidden");
-        }
-
-      }, 2300);
-
-    });
-
-  }
+}
 
 
   /* =========================================
