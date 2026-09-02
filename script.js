@@ -373,84 +373,97 @@ if (memoriesBtn) {
 
 
   /* =========================================
-     MEMORIES — ONE BY ONE
-     ========================================= */
+   MEMORIES — ONE BY ONE
+   ========================================= */
 
-  const memorySlides =
-    document.querySelectorAll(".memory-slide");
+const memorySlides =
+  document.querySelectorAll(".memory-slide");
 
-  const nextMemoryBtn =
-    document.getElementById("nextMemoryBtn");
+const nextMemoryBtn =
+  document.getElementById("nextMemoryBtn");
 
-  let currentMemory = 0;
-
-
-  function showMemory(index) {
-
-    memorySlides.forEach((slide, i) => {
-
-      slide.classList.toggle(
-        "active",
-        i === index
-      );
-
-    });
-
-  }
+let currentMemory = 0;
 
 
-  if (memorySlides.length > 0) {
+/* 📸 SHOW CURRENT MEMORY */
 
-    showMemory(0);
+function showMemory(index) {
 
-  }
+  memorySlides.forEach((slide, i) => {
+
+    slide.classList.toggle(
+      "active",
+      i === index
+    );
+
+  });
+
+}
 
 
-  if (nextMemoryBtn) {
+/* ❤️ FIRST PHOTO */
 
-    nextMemoryBtn.addEventListener("click", () => {
+if (memorySlides.length > 0) {
+  showMemory(0);
+}
 
-      if (currentMemory < memorySlides.length - 1) {
 
-        currentMemory++;
+/* ➡️ NEXT MEMORY BUTTON */
 
-        showMemory(currentMemory);
+if (nextMemoryBtn) {
 
-        if (
-          currentMemory ===
-          memorySlides.length - 1
-        ) {
+  nextMemoryBtn.addEventListener("click", () => {
 
-          nextMemoryBtn.innerHTML =
-            "Open One Last Surprise 💌";
+    /* If more photos are left */
+    if (currentMemory < memorySlides.length - 1) {
 
-        } else {
+      currentMemory++;
 
-          nextMemoryBtn.innerHTML =
-            "Next Memory → ✨";
+      showMemory(currentMemory);
 
-        }
+      /* Change button text on last photo */
 
-        setTimeout(() => {
+      if (
+        currentMemory ===
+        memorySlides.length - 1
+      ) {
 
-          memorySlides[currentMemory]
-            .scrollIntoView({
-              behavior: "smooth",
-              block: "center"
-            });
-
-        }, 100);
+        nextMemoryBtn.innerHTML =
+          "Open One Last Surprise 💌";
 
       } else {
 
-        showScreen(screens.letterEnvelope);
+        nextMemoryBtn.innerHTML =
+          "Next Memory → ✨";
 
       }
 
-    });
+      /* Scroll to current photo */
 
-  }
+      setTimeout(() => {
 
+        memorySlides[currentMemory].scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      }, 100);
+
+    }
+
+    /* 💌 Last photo → Big Envelope */
+
+    else {
+
+      showScreen(
+        screens.letterEnvelope
+      );
+
+    }
+
+  });
+
+}
 
   /* =========================================
      BIG ENVELOPE
