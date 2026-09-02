@@ -150,17 +150,44 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cutCakeBtn && cake) {
 
     cutCakeBtn.addEventListener("click", () => {
-  birthdayCake.classList.add("cake-cut");
 
-  cakeStatus.textContent = "Yay! Cake cut ho gaya! 🎂❤️";
+      cutCakeBtn.style.display = "none";
 
-  cutCakeBtn.disabled = true;
-  cutCakeBtn.style.opacity = "0.6";
+      cake.classList.add("cutting");
 
-  setTimeout(() => {
-    continueAfterCake.classList.remove("hidden");
-  }, 1800);
-});
+      if (cakeStatus) {
+        cakeStatus.innerHTML =
+          "Cutting the cake... 🔪🎂";
+      }
+
+      setTimeout(() => {
+
+        cake.classList.remove("cutting");
+        cake.classList.add("cut");
+
+        if (cakeStatus) {
+          cakeStatus.innerHTML =
+            "YAYYYYY!!! 🎂🥳 Happy Birthday! ✨";
+        }
+
+        createBirthdayBalloons();
+        createCakeConfetti();
+
+      }, 1000);
+
+
+      setTimeout(() => {
+
+        if (continueAfterCake) {
+          continueAfterCake.classList.remove("hidden");
+        }
+
+      }, 2300);
+
+    });
+
+  }
+
 
   /* =========================================
      CAKE → SMALL ENVELOPE
