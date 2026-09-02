@@ -55,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yesBtn) {
 
     yesBtn.addEventListener("click", () => {
+      if (noReactionTimer) {
+  clearTimeout(noReactionTimer);
+      }
 
       questionEmoji.innerHTML = "🤩🎉🥳";
       questionTitle.innerHTML = "YAYYYYY!!! 😍✨";
@@ -79,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-
+  let noReactionTimer;
   if (noBtn) {
 
     noBtn.addEventListener("click", () => {
@@ -96,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       noBtn.innerHTML =
         "NO... Sorry 😭";
 
-      setTimeout(() => {
+      noReactionTimer = setTimeout(() => {
 
         questionEmoji.innerHTML = "😠👉";
 
@@ -131,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =========================================
+/* =========================================
    CAKE CUTTING
    ========================================= */
 
@@ -139,13 +142,10 @@ const cutCakeBtn =
   document.getElementById("cutCakeBtn");
 
 const cake =
-  document.getElementById("birthdayCake");
+  document.getElementById("cake");
 
 const cakeStatus =
   document.getElementById("cakeStatus");
-
-const continueAfterCake =
-  document.getElementById("continueAfterCake");
 
 if (cutCakeBtn) {
 
@@ -154,36 +154,35 @@ if (cutCakeBtn) {
     cutCakeBtn.disabled = true;
     cutCakeBtn.style.opacity = "0.5";
 
-    const leftHalf =
-      document.querySelector(".cake-half-left");
+    const leftCake =
+      document.querySelector(".cake-left");
 
-    const rightHalf =
-      document.querySelector(".cake-half-right");
+    const rightCake =
+      document.querySelector(".cake-right");
 
     const knife =
-      document.getElementById("cakeKnife");
+      document.getElementById("knife");
 
     if (cakeStatus) {
       cakeStatus.innerHTML =
         "Cutting the cake... 🔪🎂";
     }
 
-    /* KNIFE MOVEMENT */
+    /* 🔪 KNIFE CUTTING */
     if (knife) {
 
       knife.animate(
         [
           {
-            transform:
-              "translateX(-50%) rotate(-18deg)"
+            transform: "translateX(-50%) rotate(-20deg)"
           },
           {
             transform:
-              "translateX(-50%) translateY(75px) rotate(8deg)"
+              "translateX(-50%) translateY(65px) rotate(8deg)"
           },
           {
             transform:
-              "translateX(-50%) translateY(95px) rotate(8deg)"
+              "translateX(-50%) translateY(85px) rotate(8deg)"
           }
         ],
         {
@@ -195,10 +194,10 @@ if (cutCakeBtn) {
 
     }
 
-    /* LEFT CAKE HALF */
-    if (leftHalf) {
+    /* 🎂 LEFT HALF */
+    if (leftCake) {
 
-      leftHalf.animate(
+      leftCake.animate(
         [
           {
             transform: "translateX(0) rotate(0deg)"
@@ -213,17 +212,17 @@ if (cutCakeBtn) {
         {
           duration: 1500,
           delay: 500,
-          easing: "cubic-bezier(.2,.8,.2,1)",
+          easing: "ease-out",
           fill: "forwards"
         }
       );
 
     }
 
-    /* RIGHT CAKE HALF */
-    if (rightHalf) {
+    /* 🎂 RIGHT HALF */
+    if (rightCake) {
 
-      rightHalf.animate(
+      rightCake.animate(
         [
           {
             transform: "translateX(0) rotate(0deg)"
@@ -238,14 +237,14 @@ if (cutCakeBtn) {
         {
           duration: 1500,
           delay: 500,
-          easing: "cubic-bezier(.2,.8,.2,1)",
+          easing: "ease-out",
           fill: "forwards"
         }
       );
 
     }
 
-    /* CELEBRATION */
+    /* 🎉 CELEBRATION */
     setTimeout(() => {
 
       if (cakeStatus) {
@@ -257,15 +256,6 @@ if (cutCakeBtn) {
       createCakeConfetti();
 
     }, 1800);
-
-    /* CONTINUE BUTTON */
-    setTimeout(() => {
-
-      if (continueAfterCake) {
-        continueAfterCake.classList.remove("hidden");
-      }
-
-    }, 2600);
 
   });
 
