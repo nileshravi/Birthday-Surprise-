@@ -973,3 +973,52 @@ button {
     transform: translateX(-50%) scale(1);
   }
 }
+/* =========================================
+   MEMORIES — ONE BY ONE PHOTO REVEAL
+   ========================================= */
+
+.memory-container {
+  position: relative;
+  width: 100%;
+}
+
+.memory-slide {
+  display: none;
+  width: 100%;
+  animation: memoryReveal 0.7s ease;
+}
+
+.memory-slide.active {
+  display: block;
+}
+
+.memory-slide img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto 20px;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.memory-slide p {
+  text-align: center;
+  line-height: 1.7;
+  margin: 15px auto;
+  max-width: 500px;
+}
+
+@keyframes memoryReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
