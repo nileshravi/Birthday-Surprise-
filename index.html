@@ -283,6 +283,7 @@
       <div
         id="memoryContainer"
         class="memory-container"
+        data-current="0"
       >
 
         <!-- PHOTO 1 -->
@@ -427,9 +428,121 @@
         type="button"
         id="nextMemoryBtn"
         class="main-button"
+        onclick="nextMemoryDirect()"
       >
         Next Memory → ✨
       </button>
+
+      <script>
+function nextMemoryDirect() {
+
+  const slides =
+    document.querySelectorAll(".memory-slide");
+
+  const button =
+    document.getElementById("nextMemoryBtn");
+
+  let current =
+    parseInt(
+      document
+        .getElementById("memoryContainer")
+        .getAttribute("data-current") || "0"
+    );
+
+
+  /* NEXT PHOTO */
+
+  if (current < slides.length - 1) {
+
+    /* Hide current photo */
+
+    slides[current].style.display = "none";
+
+
+    /* Move to next */
+
+    current++;
+
+
+    /* Show next photo */
+
+    slides[current].style.display = "block";
+
+
+    /* Save current number */
+
+    document
+      .getElementById("memoryContainer")
+      .setAttribute(
+        "data-current",
+        current
+      );
+
+
+    /* Last photo */
+
+    if (current === slides.length - 1) {
+
+      button.innerHTML =
+        "Open One Last Surprise 💌";
+
+    } else {
+
+      button.innerHTML =
+        "Next Memory → ✨";
+
+    }
+
+
+    /* Scroll */
+
+    slides[current].scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+  }
+
+  /* AFTER PHOTO 8 */
+
+  else {
+
+    const memoriesScreen =
+      document.getElementById(
+        "memoriesScreen"
+      );
+
+    const letterEnvelopeScreen =
+      document.getElementById(
+        "letterEnvelopeScreen"
+      );
+
+
+    if (memoriesScreen) {
+      memoriesScreen.classList.add("hidden");
+    }
+
+    if (letterEnvelopeScreen) {
+
+      letterEnvelopeScreen.classList.remove(
+        "hidden"
+      );
+
+      setTimeout(() => {
+
+        letterEnvelopeScreen.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }, 100);
+
+    }
+
+  }
+
+}
+      </script>
 
     </div>
 
