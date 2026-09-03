@@ -372,7 +372,7 @@ if (memoriesBtn) {
   }
 
 
-  /* =========================================
+ /* =========================================
    MEMORIES — ONE BY ONE
    ========================================= */
 
@@ -385,43 +385,46 @@ const nextMemoryBtn =
 let currentMemory = 0;
 
 
-/* 📸 SHOW CURRENT MEMORY */
+/* 📸 SHOW ONLY ONE PHOTO */
 
 function showMemory(index) {
 
   memorySlides.forEach((slide, i) => {
 
-    slide.classList.toggle(
-      "active",
-      i === index
-    );
+    if (i === index) {
+      slide.style.display = "block";
+      slide.style.opacity = "1";
+    } else {
+      slide.style.display = "none";
+    }
 
   });
 
 }
 
 
-/* ❤️ FIRST PHOTO */
+/* ❤️ START WITH PHOTO 1 */
 
 if (memorySlides.length > 0) {
   showMemory(0);
 }
 
 
-/* ➡️ NEXT MEMORY BUTTON */
+/* ➡️ NEXT BUTTON */
 
 if (nextMemoryBtn) {
 
   nextMemoryBtn.addEventListener("click", () => {
 
-    /* If more photos are left */
+    /* More photos available */
+
     if (currentMemory < memorySlides.length - 1) {
 
       currentMemory++;
 
       showMemory(currentMemory);
 
-      /* Change button text on last photo */
+      /* Last photo */
 
       if (
         currentMemory ===
@@ -438,7 +441,7 @@ if (nextMemoryBtn) {
 
       }
 
-      /* Scroll to current photo */
+      /* Scroll to new photo */
 
       setTimeout(() => {
 
@@ -447,11 +450,11 @@ if (nextMemoryBtn) {
           block: "center"
         });
 
-      }, 100);
+      }, 150);
 
     }
 
-    /* 💌 Last photo → Big Envelope */
+    /* 💌 AFTER PHOTO 8 */
 
     else {
 
@@ -464,7 +467,6 @@ if (nextMemoryBtn) {
   });
 
 }
-
   /* =========================================
      BIG ENVELOPE
      ========================================= */
