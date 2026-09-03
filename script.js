@@ -372,8 +372,8 @@ if (memoriesBtn) {
   }
 
 
- /* =========================================
-   MEMORIES — ONE BY ONE
+/* =========================================
+   MEMORIES — FINAL PHOTO SWITCH SYSTEM
    ========================================= */
 
 const memorySlides =
@@ -385,17 +385,21 @@ const nextMemoryBtn =
 let currentMemory = 0;
 
 
-/* 📸 SHOW ONLY ONE PHOTO */
+/* SHOW ONE PHOTO ONLY */
 
 function showMemory(index) {
 
   memorySlides.forEach((slide, i) => {
 
     if (i === index) {
+
       slide.style.display = "block";
       slide.style.opacity = "1";
+
     } else {
+
       slide.style.display = "none";
+
     }
 
   });
@@ -403,63 +407,61 @@ function showMemory(index) {
 }
 
 
-/* ❤️ START WITH PHOTO 1 */
+/* FIRST PHOTO */
 
 if (memorySlides.length > 0) {
+
   showMemory(0);
+
 }
 
 
-/* ➡️ NEXT BUTTON */
+/* NEXT BUTTON */
 
 if (nextMemoryBtn) {
 
-  nextMemoryBtn.addEventListener("click", () => {
+  nextMemoryBtn.addEventListener("click", function () {
 
-    /* More photos available */
+    console.log("NEXT MEMORY CLICKED");
 
-    if (currentMemory < memorySlides.length - 1) {
+    if (
+      currentMemory <
+      memorySlides.length - 1
+    ) {
 
       currentMemory++;
 
       showMemory(currentMemory);
 
-      /* Last photo */
 
       if (
         currentMemory ===
         memorySlides.length - 1
       ) {
 
-        nextMemoryBtn.innerHTML =
+        nextMemoryBtn.textContent =
           "Open One Last Surprise 💌";
 
       } else {
 
-        nextMemoryBtn.innerHTML =
+        nextMemoryBtn.textContent =
           "Next Memory → ✨";
 
       }
 
-      /* Scroll to new photo */
+      window.scrollTo({
+        top: memorySlides[currentMemory].offsetTop - 100,
+        behavior: "smooth"
+      });
 
-      setTimeout(() => {
+    } else {
 
-        memorySlides[currentMemory].scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-      }, 150);
-
-    }
-
-    /* 💌 AFTER PHOTO 8 */
-
-    else {
+      /* PHOTO 8 KE BAAD */
 
       showScreen(
-        screens.letterEnvelope
+        document.getElementById(
+          "letterEnvelopeScreen"
+        )
       );
 
     }
