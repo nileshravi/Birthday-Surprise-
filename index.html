@@ -737,12 +737,21 @@ function nextMemoryDirect() {
 
 
       <button
-       type="button"
-       id="finishLetterBtn"
-       class="main-button"
-     >
-       One Last Surprise 🎉
-     </button>
+  type="button"
+  id="finishLetterBtn"
+  class="main-button"
+  onclick="
+    document.getElementById('letterScreen').classList.add('hidden');
+    document.getElementById('finalScreen').classList.remove('hidden');
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  "
+>
+  One Last Surprise 🎉
+</button>
       
   <!-- =========================================
        STEP 8 — FINAL BIRTHDAY
