@@ -737,31 +737,20 @@ function nextMemoryDirect() {
 
 
       <button
-  type="button"
-  id="finalBtn"
-  class="main-button"
-  onclick="
-    document.getElementById('letterScreen').style.setProperty('display', 'none', 'important');
-
-    var finalScreen = document.getElementById('finalScreen');
-
-    finalScreen.classList.remove('hidden');
-
-    finalScreen.style.setProperty('display', 'flex', 'important');
-
-    window.scrollTo(0, 0);
-  "
->
-  One Last Surprise 🎉
-</button>
-
+       type="button"
+       id="finishLetterBtn"
+       class="main-button"
+     >
+       One Last Surprise 🎉
+     </button>
+      
   <!-- =========================================
        STEP 8 — FINAL BIRTHDAY
        ========================================= -->
 
   <section
     id="finalScreen"
-    class="screen final-screen"
+    class="screen final-screen hidden"
   >
 
     <div class="final-content">
