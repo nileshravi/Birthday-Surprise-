@@ -737,69 +737,20 @@ function nextMemoryDirect() {
 
 
       <button
-        type="button"
-        id="finalBtn"
-        class="main-button"
-        onclick="showFinalSurprise()"
-      >
-        One Last Surprise 🎉
-      </button>
-      <script>
-function showFinalSurprise() {
-
-  const letterScreen =
-    document.getElementById("letterScreen");
-
-  const finalScreen =
-    document.getElementById("finalScreen");
-
-
-  /* Hide letter */
-
-  if (letterScreen) {
-    letterScreen.classList.add("hidden");
-  }
-
-
-  /* Show final birthday */
-
-  if (finalScreen) {
-
-    finalScreen.classList.remove("hidden");
-
-    setTimeout(() => {
-
-      finalScreen.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    }, 100);
-
-  }
-
-
-  /* 🎉 FINAL CELEBRATION */
-
-  if (typeof launchFinalConfetti === "function") {
-    setTimeout(() => {
-      launchFinalConfetti();
-    }, 300);
-  }
-
-  if (typeof createFloatingHearts === "function") {
-    setTimeout(() => {
-      createFloatingHearts();
-    }, 500);
-  }
-
-}
-      </script>
-
-    </div>
-
-  </section>
-
+  type="button"
+  id="finalBtn"
+  class="main-button"
+  onclick="
+    document.getElementById('letterScreen').classList.add('hidden');
+    document.getElementById('finalScreen').classList.remove('hidden');
+    document.getElementById('finalScreen').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  "
+>
+  One Last Surprise 🎉
+</button>
 
   <!-- =========================================
        STEP 8 — FINAL BIRTHDAY
