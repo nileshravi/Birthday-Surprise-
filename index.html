@@ -595,9 +595,66 @@ function nextMemoryDirect() {
         type="button"
         id="openLetterBtn"
         class="main-button"
+        onclick="openBigEnvelopeDirect()"
       >
         Open My Letter 💌
       </button>
+      <script>
+    function openBigEnvelopeDirect() {
+
+       const envelope =
+         document.getElementById("bigEnvelope");
+
+       const letterScreen =
+         document.getElementById("letterScreen");
+
+       const button =
+         document.getElementById("openBigLetterBtn");
+
+
+  /* 💌 OPEN ENVELOPE */
+
+       if (envelope) {
+         envelope.classList.add("open");
+       }
+
+       if (button) {
+         button.style.display = "none";
+       }
+
+
+  /* ❤️ SHOW LETTER */
+
+       setTimeout(() => {
+
+         const envelopeScreen =
+           document.getElementById(
+             "letterEnvelopeScreen"
+           );
+
+         if (envelopeScreen) {
+           envelopeScreen.classList.add("hidden");
+         }
+
+         if (letterScreen) {
+
+           letterScreen.classList.remove("hidden");
+
+           setTimeout(() => {
+
+             letterScreen.scrollIntoView({
+               behavior: "smooth",
+               block: "start"
+             });
+
+           }, 100);
+
+         }
+
+       }, 1300);
+
+     }
+      </script>
 
     </div>
 
