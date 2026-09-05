@@ -799,6 +799,38 @@ function nextMemoryDirect() {
   <!-- JavaScript -->
 
   <script src="script.js"></script>
+      <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const finalButton =
+    document.getElementById("finishLetterBtn");
+
+  if (finalButton) {
+
+    finalButton.onclick = function () {
+
+      const letter =
+        document.getElementById("letterScreen");
+
+      const final =
+        document.getElementById("finalScreen");
+
+      if (letter) {
+        letter.classList.add("hidden");
+      }
+
+      if (final) {
+        final.classList.remove("hidden");
+      }
+
+      window.scrollTo(0, 0);
+
+    };
+
+  }
+
+});
+      </script>
 
 </body>
 </html>
