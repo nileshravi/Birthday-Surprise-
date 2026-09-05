@@ -741,29 +741,15 @@ function nextMemoryDirect() {
   id="finalBtn"
   class="main-button"
   onclick="
-    var letter = document.getElementById('letterScreen');
-    var finalPage = document.getElementById('finalScreen');
+    document.getElementById('letterScreen').style.setProperty('display', 'none', 'important');
 
-    letter.classList.add('hidden');
+    var finalScreen = document.getElementById('finalScreen');
 
-    finalPage.classList.remove('hidden');
+    finalScreen.classList.remove('hidden');
 
-    finalPage.style.display = 'flex';
+    finalScreen.style.setProperty('display', 'flex', 'important');
 
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-
-    setTimeout(function() {
-      if (typeof launchFinalConfetti === 'function') {
-        launchFinalConfetti();
-      }
-
-      if (typeof createFloatingHearts === 'function') {
-        createFloatingHearts();
-      }
-    }, 300);
+    window.scrollTo(0, 0);
   "
 >
   One Last Surprise 🎉
