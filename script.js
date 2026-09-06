@@ -357,20 +357,6 @@ if (memoriesBtn) {
 
 }
 
-  /* =========================================
-     ENVELOPE → MEMORIES
-     ========================================= */
-
-  if (continueToMemories) {
-
-    continueToMemories.addEventListener("click", () => {
-
-      showScreen(screens.memories);
-
-    });
-
-  }
-
 
 /* =========================================
    MEMORIES — FINAL PHOTO SWITCH SYSTEM
