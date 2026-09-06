@@ -290,20 +290,6 @@ if (continueAfterCake) {
 
 }
 
-  /* =========================================
-     CAKE → SMALL ENVELOPE
-     ========================================= */
-
-  if (continueAfterCake) {
-
-    continueAfterCake.addEventListener("click", () => {
-
-      showScreen(screens.envelope);
-
-    });
-
-  }
-
 
   /* =========================================
    SMALL PINK ENVELOPE
