@@ -504,25 +504,45 @@ if (nextMemoryBtn) {
      ========================================= */
 
   const finishLetterBtn =
-    document.getElementById("finishLetterBtn");
+  document.getElementById("finishLetterBtn");
 
-  if (finishLetterBtn) {
+if (finishLetterBtn) {
 
-    finishLetterBtn.addEventListener("click", () => {
+  finishLetterBtn.addEventListener("click", function () {
 
-      showScreen(screens.final);
+    const letterScreen =
+      document.getElementById("letterScreen");
 
-      setTimeout(() => {
+    const finalScreen =
+      document.getElementById("finalScreen");
 
+    if (letterScreen) {
+      letterScreen.classList.add("hidden");
+    }
+
+    if (finalScreen) {
+      finalScreen.classList.remove("hidden");
+      finalScreen.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    setTimeout(function () {
+
+      if (typeof launchFinalConfetti === "function") {
         launchFinalConfetti();
+      }
+
+      if (typeof createFloatingHearts === "function") {
         createFloatingHearts();
+      }
 
-      }, 500);
+    }, 500);
 
-    });
+  });
 
-  }
-
+}
 
   /* =========================================
      CONFETTI
