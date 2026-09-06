@@ -53,6 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const questionText = document.getElementById("questionText");
 
   if (yesBtn) {
+    const introMusic = document.getElementById("introMusic");
+
+if (introMusic) {
+  introMusic.volume = 0.25;
+  introMusic.play().catch(() => {});
+}
 
     yesBtn.addEventListener("click", () => {
       if (noReactionTimer) {
