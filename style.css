@@ -1022,3 +1022,17 @@ button {
   }
 
 }
+.dooron-video {
+  width: 100%;
+  max-width: 520px;
+  margin: 20px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+.dooron-video iframe {
+  display: block;
+  width: 100%;
+  height: 220px;
+     }
