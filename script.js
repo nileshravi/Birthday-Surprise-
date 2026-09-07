@@ -825,3 +825,25 @@ if (finishLetterBtn) {
   }
 
 });
+// Dooron Dooron starts when Memories open
+const memoriesBtn = document.getElementById("memoriesBtn");
+
+if (memoriesBtn) {
+  memoriesBtn.addEventListener("click", function () {
+
+    // Stop opening music
+    const introMusic = document.getElementById("introMusic");
+    if (introMusic) {
+      introMusic.pause();
+      introMusic.currentTime = 0;
+    }
+
+    // Start Dooron Dooron
+    const dooronMusic = document.getElementById("dooronMusic");
+
+    if (dooronMusic) {
+      dooronMusic.src =
+        "https://www.youtube.com/embed/LV_wiOhO40Q?autoplay=1&loop=1&playlist=LV_wiOhO40Q";
+    }
+  });
+}
