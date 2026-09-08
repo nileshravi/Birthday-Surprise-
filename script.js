@@ -870,6 +870,7 @@ if (openLetterButton) {
         const text = paragraph.textContent.trim();
 
         paragraph.style.visibility = "visibile";
+        paragraph.style.opacity = "1";
         paragraph.textContent = "";
 
         let charIndex = 0;
