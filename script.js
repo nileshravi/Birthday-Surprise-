@@ -867,9 +867,12 @@ if (openLetterButton) {
         }
 
         const paragraph = paragraphs[paragraphIndex];
+
+        // Original paragraph ka text pehle save karo
         const text = paragraph.textContent.trim();
 
-        paragraph.style.visibility = "visibile";
+        // Paragraph ko typing ke liye ready karo
+        paragraph.style.visibility = "visible";
         paragraph.style.opacity = "1";
         paragraph.textContent = "";
 
@@ -882,13 +885,14 @@ if (openLetterButton) {
             paragraph.textContent += text.charAt(charIndex);
             charIndex++;
 
-            setTimeout(typeCharacter, 30);
+            setTimeout(typeCharacter, 35);
 
           } else {
 
             paragraphIndex++;
 
-            setTimeout(typeNextParagraph, 600);
+            // Next paragraph thoda delay ke baad
+            setTimeout(typeNextParagraph, 700);
           }
         }
 
