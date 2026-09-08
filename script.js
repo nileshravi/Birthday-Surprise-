@@ -848,7 +848,7 @@ if (memoriesBtn) {
   });
 }
 /* =========================================
-   💌 LETTER TYPEWRITER EFFECT
+   💌 LETTER — ONE PARAGRAPH AT A TIME
    ========================================= */
 
 const openLetterButton =
@@ -863,7 +863,16 @@ if (openLetterButton) {
       const paragraphs =
         document.querySelectorAll(".letter-text p");
 
-      paragraphs.forEach((paragraph) => {
+      let paragraphIndex = 0;
+
+      function typeParagraph() {
+
+        if (paragraphIndex >= paragraphs.length) {
+          return;
+        }
+
+        const paragraph =
+          paragraphs[paragraphIndex];
 
         const originalText =
           paragraph.textContent.trim();
@@ -871,20 +880,29 @@ if (openLetterButton) {
         paragraph.textContent = "";
         paragraph.style.opacity = "1";
 
-        let index = 0;
+        let charIndex = 0;
 
         function typeCharacter() {
 
-          if (index < originalText.length) {
+          if (charIndex < originalText.length) {
 
             paragraph.textContent +=
-              originalText[index];
+              originalText[charIndex];
 
-            index++;
+            charIndex++;
 
             setTimeout(
               typeCharacter,
               28
+            );
+
+          } else {
+
+            paragraphIndex++;
+
+            setTimeout(
+              typeParagraph,
+              450
             );
 
           }
@@ -893,7 +911,9 @@ if (openLetterButton) {
 
         typeCharacter();
 
-      });
+      }
+
+      typeParagraph();
 
     }, 1500);
 
