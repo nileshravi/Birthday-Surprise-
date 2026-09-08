@@ -847,3 +847,56 @@ if (memoriesBtn) {
     }
   });
 }
+/* =========================================
+   💌 LETTER TYPEWRITER EFFECT
+   ========================================= */
+
+const openLetterButton =
+  document.getElementById("openLetterBtn");
+
+if (openLetterButton) {
+
+  openLetterButton.addEventListener("click", () => {
+
+    setTimeout(() => {
+
+      const paragraphs =
+        document.querySelectorAll(".letter-text p");
+
+      paragraphs.forEach((paragraph) => {
+
+        const originalText =
+          paragraph.textContent.trim();
+
+        paragraph.textContent = "";
+        paragraph.style.opacity = "1";
+
+        let index = 0;
+
+        function typeCharacter() {
+
+          if (index < originalText.length) {
+
+            paragraph.textContent +=
+              originalText[index];
+
+            index++;
+
+            setTimeout(
+              typeCharacter,
+              28
+            );
+
+          }
+
+        }
+
+        typeCharacter();
+
+      });
+
+    }, 1500);
+
+  });
+
+}
