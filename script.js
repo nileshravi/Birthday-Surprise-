@@ -847,76 +847,55 @@ if (memoriesBtn) {
     }
   });
 }
-/* =========================================
-   💌 LETTER — ONE PARAGRAPH AT A TIME
-   ========================================= */
+/* 💌 LETTER TYPEWRITER - SEQUENTIAL */
 
-const openLetterButton =
-  document.getElementById("openLetterBtn");
+const openLetterButton = document.getElementById("openLetterBtn");
 
 if (openLetterButton) {
+  openLetterButton.addEventListener("click", function () {
 
-  openLetterButton.addEventListener("click", () => {
+    setTimeout(function () {
 
-    setTimeout(() => {
-
-      const paragraphs =
-        document.querySelectorAll(".letter-text p");
+      const paragraphs = document.querySelectorAll(".letter-text p");
 
       let paragraphIndex = 0;
 
-      function typeParagraph() {
+      function typeNextParagraph() {
 
         if (paragraphIndex >= paragraphs.length) {
           return;
         }
 
-        const paragraph =
-          paragraphs[paragraphIndex];
-
-        const originalText =
-          paragraph.textContent.trim();
+        const paragraph = paragraphs[paragraphIndex];
+        const text = paragraph.textContent.trim();
 
         paragraph.textContent = "";
-        paragraph.style.opacity = "1";
 
         let charIndex = 0;
 
         function typeCharacter() {
 
-          if (charIndex < originalText.length) {
+          if (charIndex < text.length) {
 
-            paragraph.textContent +=
-              originalText[charIndex];
-
+            paragraph.textContent += text.charAt(charIndex);
             charIndex++;
 
-            setTimeout(
-              typeCharacter,
-              28
-            );
+            setTimeout(typeCharacter, 30);
 
           } else {
 
             paragraphIndex++;
 
-            setTimeout(
-              typeParagraph,
-              450
-            );
-
+            setTimeout(typeNextParagraph, 600);
           }
-
         }
 
         typeCharacter();
-
       }
 
-      typeParagraph();
+      typeNextParagraph();
 
     }, 1500);
 
   });
-
 }
