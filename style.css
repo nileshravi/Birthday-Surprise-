@@ -1218,3 +1218,7 @@ button {
   z-index: 15;
   top: 45px;
        }
+/* 💌 Letter starts completely hidden */
+.letter-text p {
+  visibility: hidden;
+}
