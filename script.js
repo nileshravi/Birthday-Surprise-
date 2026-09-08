@@ -869,7 +869,7 @@ if (openLetterButton) {
         const paragraph = paragraphs[paragraphIndex];
         const text = paragraph.textContent.trim();
 
-        paragraph.style.visibility = "hidden";
+        paragraph.style.visibility = "visibile";
         paragraph.textContent = "";
 
         let charIndex = 0;
