@@ -905,3 +905,30 @@ if (openLetterButton) {
 
   });
 }
+/* 🔐 PASSWORD PROTECTION */
+
+const unlockBtn = document.getElementById("unlockBtn");
+const passwordInput = document.getElementById("passwordInput");
+const passwordError = document.getElementById("passwordError");
+const passwordScreen = document.getElementById("passwordScreen");
+const questionScreen = document.getElementById("questionScreen");
+
+const correctPassword = "beautiful";
+
+if (unlockBtn) {
+  unlockBtn.addEventListener("click", function () {
+
+    if (passwordInput.value === correctPassword) {
+
+      passwordScreen.classList.add("hidden");
+      questionScreen.classList.remove("hidden");
+
+    } else {
+
+      passwordError.textContent =
+        "Oops! Wrong password 😜 Try again ❤️";
+
+      passwordInput.value = "";
+    }
+  });
+}
