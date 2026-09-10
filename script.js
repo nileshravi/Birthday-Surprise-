@@ -932,3 +932,10 @@ if (unlockBtn) {
     }
   });
 }
+if (passwordInput) {
+  passwordInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      unlockBtn.click();
+    }
+  });
+}
