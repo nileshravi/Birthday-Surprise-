@@ -913,7 +913,7 @@ const passwordError = document.getElementById("passwordError");
 const passwordScreen = document.getElementById("passwordScreen");
 const questionScreen = document.getElementById("questionScreen");
 
-const correctPassword = "beautiful";
+const correctPassword = "nothing";
 
 if (unlockBtn) {
   unlockBtn.addEventListener("click", function () {
